@@ -1,0 +1,91 @@
+.shopbycontainer {
+  width: 99vw;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.box::before {
+  background-image: url("https://m.media-amazon.com/images/I/51ejUpvaorL._AC_UY1100_.jpg");
+}
+.box2::before {
+  background-image: url("https://assets.ajio.com/medias/sys_master/root/20241017/VTyO/6710e8a8f9b8ef490bc0f36e/-473Wx593H-700595679-grey-MODEL.jpg");
+}
+.box3::before {
+  background-image: url("https://imgmediagumlet.lbb.in/media/2023/07/64b8d8e65758625afe7bf6cb_1689835750343.jpg");
+}
+.box4::before {
+  background-image: url("https://fashionformen-sk.s17.cdn-upgates.com/_cache/b/3/b3741d9db93fc18cd61fb5bc92caba4a-161fd37a7a221c-img-20220119-wa0097.webp");
+}
+
+.box,
+.box2,
+.box3,
+.box4 {
+  width: 350px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.box::before,
+.box2::before,
+.box3::before,
+.box4::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  transition: transform 0.5s ease;
+}
+
+.box:hover::before,
+.box2:hover::before,
+.box3:hover::before,
+.box4:hover::before {
+  transform: scale(1.05);
+}
+
+.box > *,  /* Child ko target karta hai box ke  */
+.box2 > *,
+.box3 > *,
+.box4 > * {
+  position: relative;
+  z-index: 2;
+}
+
+.box:hover button,
+.box2:hover button,
+.box3:hover button,
+.box4:hover button {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.shopbycontainer button {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  padding: 10px 32px;
+  background-color: #d6cfc7;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2b2b2b;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.35s ease;
+  z-index: 3;
+}
+
+.shopbycontainer button:hover {
+  background-color: #c7beb5;
+}
