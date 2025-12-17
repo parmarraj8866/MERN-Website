@@ -1,0 +1,108 @@
+import React, { useEffect, useState } from "react";
+import Api from "../Api/Api";
+
+export default function OrderList() {
+  const [orderClothes, setorderClothes] = useState([]);
+
+  async function getorderClothes() {
+    const res = await Api.get("/api/orderclothes");
+    setorderClothes(res.data.orderList);
+  }
+
+  let total = 0;
+  for (var i in orderClothes) {
+    let price = orderClothes[i].price;
+    const p = (price * orderClothes[i].discount) / 100;
+    const finalPrice = Number(price) - p;
+    total += finalPrice;
+  }
+
+  function totalPrice(price, discount) {
+    const p = (price * discount) / 100;
+    const finalPrice = Number(price) - p;
+    return finalPrice;
+  }
+
+  async function trash(id) {
+    await Api.delete(`/api/orderclothes/${id}`);
+    getorderClothes();
+  }
+
+  useEffect(() => {
+    getorderClothes();
+  }, []);
+  return (
+    <div>
+      <div
+        className="d-flex justify-content-between mt-5 fw-normal mx-5 py-1 "
+        style={{ borderBottom: "2px solid #131313ff" }}
+      >
+        <h2>OrderList</h2>
+        <h2>
+          Total Order's :{" "}
+          <span className="text-danger fw-bold">{orderClothes.length}</span>
+        </h2>
+        <h2>
+          Total Amount : <span className="text-danger fw-bold">{total}</span>
+        </h2>
+      </div>
+
+      <div className="container my-5">
+        <div className="row g-2">
+          {orderClothes?.map((ele, index) => (
+            <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
+              <div className="shadow-sm border p-3">
+                <div className="card-body">
+                  <h5 className="card-title text-capitalize">{ele.name}</h5>
+
+                  <p className="my-1 text-muted">Category: {ele.category}</p>
+
+                  <p className="mb-1">Color: {ele.color}</p>
+
+                  <p className="mb-1">Size: {ele.size?.toUpperCase()}</p>
+
+                  <div>
+                    <span className="text-decoration-line-through text-muted me-1">
+                      ₹{ele.price}
+                    </span>
+                    <span className="fw-semibold text-success fs-5">
+                      ₹{totalPrice(ele.price, ele.discount)}
+                    </span>
+                  </div>
+
+                  <small className="text-danger">{ele.discount}% OFF</small>
+                </div>
+
+                <div className="card-footer bg-white border-0 mt-2">
+                  <div className="d-flex gap-2">
+                    <button className="btn btn-dark btn-sm">
+                      View Details
+                    </button>
+
+                    {/* <button className="btn btn-warning btn-sm">Edit </button> */}
+                    <button
+                      onClick={() => trash(ele._id)}
+                      className="btn btn-danger btn-sm"
+                    >
+                      Remove{" "}
+                    </button>
+                    <a href="/home" className="btn btn-primary btn-sm">
+                      Back{" "}
+                    </a>
+
+                    {/* <button className="btn btn-dark btn-sm">View Details</button>
+                  <button className="btn btn-success btn-sm">
+                    Add to Cart
+                  </button>
+                         <button className="btn btn-warning btn-sm">Edit Order</button>
+                  <button className="btn btn-danger btn-sm">Remove Order</button> */}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

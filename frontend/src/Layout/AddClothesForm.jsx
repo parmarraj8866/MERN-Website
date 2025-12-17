@@ -5,11 +5,15 @@ import { useNavigate } from "react-router-dom";
 
 export default function AddClothesForm() {
   const { register, handleSubmit, reset } = useForm();
-const redirect = useNavigate()
+  const redirect = useNavigate();
   async function add(data) {
+    // let originalPrice = Number(data.price);
+    // let finalPrice = (originalPrice * Number(data.discount)) / 100;
+    // await Api.post("/api/clothes", { ...data , price: finalPrice });
     await Api.post("/api/clothes", data);
     reset();
-    redirect("/")
+    console.log(data);
+    redirect("/home");
   }
 
   return (
@@ -105,7 +109,9 @@ const redirect = useNavigate()
 
         <div className="mb-2">
           <button className="btn btn-info me-2">Create Product</button>
-          <a href="/" className="btn btn-dark">Back Home</a>
+          <a href="/home" className="btn btn-dark">
+            Back Home
+          </a>
         </div>
       </form>
     </div>

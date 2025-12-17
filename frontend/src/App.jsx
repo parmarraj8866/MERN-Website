@@ -12,10 +12,13 @@ import "./Css/shopbycategory.css"
 
 // Layouts
 import Navbar from "./Layout/Navbar";
-import Home from "./Layout/Home";
-import ShopBycategory from "./Layout/ShopCategory";
+import Home from "./Pages/Home";
+import ShopBycategory from "./Pages/ShopCategory";
 import WardrobeEssentials from "./Layout/WardrobeEssentials";
 import AddClothesForm from "./Layout/AddClothesForm";
+import Login from "./Layout/Login";
+import Signup from "./Layout/Signup";
+import OrderList from "./Layout/OrderList";
 
 export default function App() {
   return (
@@ -25,12 +28,20 @@ export default function App() {
       <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<>
+        <Route path="/home" element={<>
       <Home />
       <ShopBycategory />
       <WardrobeEssentials />
       </>}/>
-        <Route path="create-product" element={<AddClothesForm/>}/>
+        <Route path="/home" element={<>
+      <Home />
+      <ShopBycategory />
+      <WardrobeEssentials />
+      </>}/>
+        <Route path="/create-product" element={<AddClothesForm/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/orderlist" element={<OrderList/>}/>
       </Routes>
       </BrowserRouter>
     </>

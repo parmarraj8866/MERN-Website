@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const clothSchema = new Schema({
+const orderList = new Schema({
     name: String,
     category: String,
     color: String,
@@ -11,5 +11,4 @@ const clothSchema = new Schema({
     gender: String
 })
 
-module.exports = model("clothWeb", clothSchema)
-
+module.exports = model("orderList", orderList)

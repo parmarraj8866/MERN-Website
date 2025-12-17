@@ -2,12 +2,27 @@ import React, { useEffect, useState } from "react";
 import Api from "../Api/Api";
 
 export default function WardrobeEssentials() {
-  const [clothes, setClothes] = useState();
+  const [clothes, setClothes] = useState([]);
 
   async function getClothes() {
     const res = await Api.get("/api/clothes");
     setClothes(res.data.clothes);
   }
+
+  async function add({ name, category, color, size, price, discount, gender }) {
+    await Api.post("/api/orderclothes", {
+      name,
+      category,
+      color,
+      size,
+      price,
+      discount,
+      gender,
+    });
+    alert("Added")
+  }
+
+  console.log(clothes);
 
   function totalPrice(price, discount) {
     const p = (price * discount) / 100;
@@ -24,7 +39,6 @@ export default function WardrobeEssentials() {
       <h3 className="text-center text-uppercase fw-normal mb-4">
         Wardrobe Essentials
       </h3>
-
       <div className="row g-5">
         {clothes?.map((ele, index) => (
           <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
@@ -53,7 +67,20 @@ export default function WardrobeEssentials() {
               <div className="card-footer bg-white border-0 mt-2">
                 <div className="d-grid gap-2">
                   <button className="btn btn-dark btn-sm">View Details</button>
-                  <button className="btn btn-success btn-sm">
+                  <button
+                    onClick={() =>
+                      add({
+                        name: ele.name,
+                        category: ele.category,
+                        color: ele.color,
+                        size: ele.size,
+                        price: ele.price,
+                        discount: ele.discount,
+                        gender: ele.gender,
+                      })
+                    }
+                    className="btn btn-success btn-sm"
+                  >
                     Add to Cart
                   </button>
                 </div>
