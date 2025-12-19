@@ -5,10 +5,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [id, setId] = useState(false);
+
+  const redirect = useNavigate()
+  
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-light px-5 shadow-sm py-3 sticky-top fadeInEffect"
-      style={{ backgroundColor: "white" }}
+      className="navbar navbar-expand-lg  px-5 py-3 sticky-top fadeInEffect"
+      // style={{ backgroundColor: "#f2f2f2ff"}}
+      style={{ backgroundColor: "#f5f5f5ff"}}
     >
       <a className="navbar-brand fs-3" href="/home">
         FashionAdda
@@ -33,22 +37,22 @@ export default function Navbar() {
             </a>
           </li>
           <li className="nav-item active">
-            <a className="nav-link fs-5 " href="#">
+            <a className="nav-link fs-5 " href="/shirts">
               Shirts
             </a>
           </li>
           <li className="nav-item active">
-            <a className="nav-link fs-5 " href="#">
+            <a className="nav-link fs-5 " href="/pants">
               Pants
             </a>
           </li>
           <li className="nav-item active">
-            <a className="nav-link fs-5 " href="#">
+            <a className="nav-link fs-5 " href="/jackets">
               Jackets
             </a>
           </li>
           <li className="nav-item active">
-            <a className="nav-link fs-5 " href="#">
+            <a className="nav-link fs-5 " href="/contact">
               Contact
             </a>
           </li>
@@ -79,11 +83,11 @@ export default function Navbar() {
               <FiShoppingCart className="fs-3" style={{ cursor: "pointer" }} />
             </a>
           </li>
-          <li className="mt-1">
+          {/* <li className="mt-1">
             <a href="/create-product" className="btn btn-info">
               Create-Product
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>

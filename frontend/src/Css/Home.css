@@ -46,9 +46,9 @@
 
 .main-container {
 	display: flex;
-	
 	width: 100%;
-	max-width: 1400px;
+	max-width: 1600px;
+	/* border: 1px solid black; */
 	height: 85vh;
 	gap: 50px;
 	align-items: center;

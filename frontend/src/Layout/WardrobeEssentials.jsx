@@ -19,7 +19,7 @@ export default function WardrobeEssentials() {
       discount,
       gender,
     });
-    alert("Added")
+    // alert("Added")
   }
 
   console.log(clothes);

@@ -14,8 +14,24 @@ export default function TeamCarousel() {
   const handleDotClick = (index) => setCurrentIndex(index);
 
   return (
-    <div className="main-container mx-3 shadow-sm">
+    <div className="main-container mx-5 shadow-sm">
       {/* Carousel Section */}
+      <div className="controls-section">
+        <div className="member-info">
+          <h2 className="member-name">{teamMembers[currentIndex].name}</h2>
+          <p className="member-role">{teamMembers[currentIndex].role}</p>
+        </div>
+
+        <div className="dots">
+          {teamMembers.map((_, i) => (
+            <div
+              key={i}
+              className={`dot ${i === currentIndex ? "active" : ""}`}
+              onClick={() => handleDotClick(i)}
+            ></div>
+          ))}
+        </div>
+      </div>
       <div className="carousel-section">
         <div className="carousel-container">
           <button className="nav-arrow up" onClick={() => handleArrow("up")}>
@@ -64,22 +80,7 @@ export default function TeamCarousel() {
         </div>
       </div>
 
-      <div className="controls-section">
-        <div className="member-info">
-          <h2 className="member-name">{teamMembers[currentIndex].name}</h2>
-          <p className="member-role">{teamMembers[currentIndex].role}</p>
-        </div>
-
-        <div className="dots">
-          {teamMembers.map((_, i) => (
-            <div
-              key={i}
-              className={`dot ${i === currentIndex ? "active" : ""}`}
-              onClick={() => handleDotClick(i)}
-            ></div>
-          ))}
-        </div>
-      </div>
+      
     </div>
   );
 }
