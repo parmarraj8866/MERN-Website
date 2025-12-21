@@ -59,15 +59,15 @@
   z-index: 2;
 }
 
-.box:hover button,
-.box2:hover button,
-.box3:hover button,
-.box4:hover button {
+.box:hover .button,
+.box2:hover .button,
+.box3:hover .button,
+.box4:hover .button {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
 
-.shopbycontainer button {
+.shopbycontainer .button {
   position: absolute;
   bottom: 30px;
   left: 50%;
@@ -86,6 +86,6 @@
   z-index: 3;
 }
 
-.shopbycontainer button:hover {
+.shopbycontainer .button:hover {
   background-color: #c7beb5;
 }

@@ -9,7 +9,12 @@ const clothSchema = new Schema({
     price: Number,
     discount: Number,
     gender: String
-})
+},
+   {
+    timestamps : true
+   }
+
+)
 
 module.exports = model("clothWeb", clothSchema)
 

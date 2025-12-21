@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const router = require("./Routes/cloth.route")
 const orderList = require("./Routes/orderlist.route")
+const contactClient = require("./Routes/contact.route")
 const dorenv = require("dotenv").config()
 const db = require("./Config/db")()
 const port = process.env.Port || 5000
@@ -13,5 +14,6 @@ app.use(cors())
 
 app.use("/api/clothes", router)
 app.use("/api/orderclothes", orderList)
+app.use("/api/contactclient", contactClient)
 
 app.listen(port, console.log(`Server : http://localhost:${port}`))

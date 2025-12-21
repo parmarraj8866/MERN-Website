@@ -22,6 +22,8 @@ import Signup from "./Layout/Signup";
 import OrderList from "./Layout/OrderList";
 import ProductContainer from "./Pages/ProductContainer";
 import SideLayout from "./Layout/SideLayout";
+import AddClothesForm from "./Layout/AddClothesForm";
+import ContactFormUI from "./Layout/Contact";
 
 export default function App() {
   return (
@@ -41,7 +43,7 @@ export default function App() {
             path="/pants"
             element={
               <>
-                <ProductContainer name="Pant" />
+                <ProductContainer name="Pants" />
               </>
             }
           />
@@ -50,6 +52,14 @@ export default function App() {
             element={
               <>
                 <ProductContainer name="Jacket" />
+              </>
+            }
+          />
+          <Route
+            path="/denim"
+            element={
+              <>
+                <ProductContainer name="denim" />
               </>
             }
           />
@@ -64,10 +74,11 @@ export default function App() {
               </>
             }
           />
-          {/* <Route path="/create-product" element={<AddClothesForm/>}/> */}
+          <Route path="/create-product" element={<AddClothesForm/>}/>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/orderlist" element={<OrderList />} />
+          <Route path="/contact" element={<ContactFormUI />} />
         </Routes>
       </BrowserRouter>
     </>

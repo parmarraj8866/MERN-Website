@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCircleUser } from "react-icons/fa6";
 import { FiShoppingCart } from "react-icons/fi";
-import { NavLink, useNavigate } from "react-router-dom";
+import Api from "../Api/Api";
 
 export default function Navbar() {
   const [id, setId] = useState(false);
+  const [orderClothes, setorderClothes] = useState([]);
 
-  const redirect = useNavigate()
-  
+  async function getorderClothes() {
+    const res = await Api.get("/api/orderclothes");
+    setorderClothes(res.data.orderList);
+  }
+
+  useEffect(() => {
+    getorderClothes();
+  }, []);
+
   return (
     <nav
-      className="navbar navbar-expand-lg  px-5 py-3 sticky-top fadeInEffect"
+      className="navbar navbar-expand-lg  px-5 py-3 fadeInEffect sticky-top "
       // style={{ backgroundColor: "#f2f2f2ff"}}
-      style={{ backgroundColor: "#f5f5f5ff"}}
+      style={{ backgroundColor: "#f5f5f5ff" , zIndex : "100"}}
     >
       <a className="navbar-brand fs-3" href="/home">
         FashionAdda
@@ -52,6 +60,11 @@ export default function Navbar() {
             </a>
           </li>
           <li className="nav-item active">
+            <a className="nav-link fs-5 " href="/denim">
+              Denim
+            </a>
+          </li>
+          <li className="nav-item active">
             <a className="nav-link fs-5 " href="/contact">
               Contact
             </a>
@@ -78,16 +91,30 @@ export default function Navbar() {
               )}
             </div>
           </li>
-          <li className="nav-item active d-flex align-items-center">
-            <a href="/orderlist" className="text-decoration-none text-dark">
-              <FiShoppingCart className="fs-3" style={{ cursor: "pointer" }} />
+          <li className="nav-item active d-flex align-items-center relative">
+            <a href="/orderlist" className="text-decoration-none text-dark ">
+              <FiShoppingCart className="fs-2" style={{ cursor: "pointer" }} />
             </a>
+            <p
+              className=" rounded-5 mx-3 d-flex align-items-center justify-content-center"
+              style={{
+                width: "30px",
+                height: "30px",
+                position: "absolute",
+                backgroundColor: "#ff0000ff",
+                marginBottom: "40px",
+              }}
+            >
+              <span className="fs-6 text-white fw-bold">
+                {orderClothes.length}
+              </span>
+            </p>
           </li>
-          {/* <li className="mt-1">
+          <li className="mt-1">
             <a href="/create-product" className="btn btn-info">
               Create-Product
             </a>
-          </li> */}
+          </li>
         </ul>
       </div>
     </nav>

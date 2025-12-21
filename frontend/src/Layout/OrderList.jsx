@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Api from "../Api/Api";
+import Navbar from "./Navbar";
 
 export default function OrderList() {
   const [orderClothes, setorderClothes] = useState([]);
@@ -43,8 +44,38 @@ export default function OrderList() {
           <span className="text-danger fw-bold">{orderClothes.length}</span>
         </h2>
         <h2>
-          Total Amount : <span className="text-danger fw-bold">{total}</span>
+          Total Amount : <span className="text-success fw-bold">₹{total}</span>
         </h2>
+      </div>
+
+      <div className="container my-4">
+        <div className="d-flex flex-wrap justify-content-between align-items-center gap-2">
+          <div className="flex-grow-1 me-2">
+            <input
+              type="text"
+              className="form-control border-success"
+              placeholder="Search orders..."
+            />
+          </div>
+
+          <div className="d-flex gap-2 ">
+            <select className="form-select border-success">
+              <option value="" disabled selected>
+                Sort by Name
+              </option>
+              <option value="name-asc">Name: A-Z</option>
+              <option value="name-desc">Name: Z-A</option>
+            </select>
+
+            <select className="form-select border-success">
+              <option value="" disabled selected>
+                Sort by Price
+              </option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <div className="container my-5">
