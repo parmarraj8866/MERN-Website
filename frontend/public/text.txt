@@ -1,23 +1,10 @@
 https://www.wix.com/website-template/view/html/3492
 
 
-1.
-import { useNavigate } from "react-router-dom";
+shop : Home, shirt, pants, jackets, contact 
 
-const navigate = useNavigate();
+Policy :  Terms & Conditions , Privacy Policy , Shipping Policy , Refund Policy , Accessibility Statement
 
-navigate("/", {
-  state: { name: "user" }
-});
 
-2.
+Follow Us : TikTok , Instagram , YouTube , Facebook , 
 
-import { useLocation } from "react-router-dom";
-
-const Home = () => {
-  const location = useLocation();
-
-  console.log(location.state.name); // "user"
-
-  return <div>Welcome {location.state.name}</div>;
-};

@@ -24,6 +24,7 @@ import ProductContainer from "./Pages/ProductContainer";
 import SideLayout from "./Layout/SideLayout";
 import AddClothesForm from "./Layout/AddClothesForm";
 import ContactFormUI from "./Layout/Contact";
+import SingleProductView from "./Layout/SingleProductView";
 
 export default function App() {
   return (
@@ -79,6 +80,7 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/orderlist" element={<OrderList />} />
           <Route path="/contact" element={<ContactFormUI />} />
+          <Route path="/singleProductview" element={<SingleProductView />} />
         </Routes>
       </BrowserRouter>
     </>
