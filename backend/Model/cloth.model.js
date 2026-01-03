@@ -8,11 +8,15 @@ const clothSchema = new Schema({
     image: String,
     price: Number,
     discount: Number,
-    gender: String
+    gender: String,
+    cloth_image: {
+        type: [String],
+        required: false
+    }
 },
-   {
-    timestamps : true
-   }
+    {
+        timestamps: true
+    }
 
 )
 

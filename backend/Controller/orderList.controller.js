@@ -1,9 +1,9 @@
 const OrderList = require("../Model/orderlist.model")
 
 exports.CreateorderList = async (req, res) => {
-    const { name, category, color, size, price, discount, gender } = req.body
-    // const image = req.file.filename 
-    const orderList = await OrderList.create({ name, category, color, size, price, discount, gender })
+    const { name, category, color, size, price, discount, gender, cloth_image } = req.body
+    // const cloth_image = req?.file?.filename 
+    const orderList = await OrderList.create({ name, category, color, size, price, discount, gender, cloth_image })
     res.send({
         suceess: true,
         orderList

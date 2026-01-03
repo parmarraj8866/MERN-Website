@@ -3,22 +3,28 @@ import Api from "../Api/Api";
 
 export default function WardrobeEssentials() {
   const [clothes, setClothes] = useState([]);
+  const URL = import.meta.env.VITE_IMAGE_URL;
 
   async function getClothes() {
     const res = await Api.get("/api/clothes");
     setClothes(res.data.clothes);
   }
 
-  async function add({ name, category, color, size, price, discount, gender }) {
-    await Api.post("/api/orderclothes", {
-      name,
-      category,
-      color,
-      size,
-      price,
-      discount,
-      gender,
-    });
+  async function add(ele) {
+    // console.log(ele)
+    const formData = new FormData();
+
+    formData.append("name", ele.name);
+    formData.append("category", ele.category);
+    formData.append("color", ele.color);
+    formData.append("size", ele.size);
+    formData.append("price", ele.price);
+    formData.append("discount", ele.discount);
+    formData.append("gender", ele.gender);
+
+    formData.append("cloth_image", ele.cloth_image[0]);
+
+    await Api.post("/api/orderclothes", formData);
   }
 
   function totalPrice(price, discount) {
@@ -43,6 +49,28 @@ export default function WardrobeEssentials() {
           ) : (
             <div className="col-sm6 col-md-4 col-lg-3" key={index}>
               <div className="shadow-sm border p-3">
+                <div
+                  style={{
+                    width: "100%",
+                    height: "250px", 
+                    overflow: "hidden",
+                    borderRadius: "5px", 
+                  }}
+                  className="mb-2"
+                >
+                  <img
+                    src={`${URL}/${ele.cloth_image[0]}`}
+                    alt={ele.name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block",
+                    }}
+                    className="mb-2"
+                  />
+                </div>
+
                 <div className="card-body">
                   <h5 className="card-title text-capitalize">{ele.name}</h5>
 
@@ -66,7 +94,6 @@ export default function WardrobeEssentials() {
 
                 <div className="card-footer bg-white border-0 mt-2">
                   <div className="d-grid gap-2">
-                   
                     <button
                       onClick={() =>
                         add({
@@ -77,6 +104,7 @@ export default function WardrobeEssentials() {
                           price: ele.price,
                           discount: ele.discount,
                           gender: ele.gender,
+                          cloth_image: ele.cloth_image,
                         })
                       }
                       className="btn btn-success btn-sm"
@@ -84,7 +112,7 @@ export default function WardrobeEssentials() {
                       Add to Cart
                     </button>
 
-                     <button className="btn btn-dark btn-sm">
+                    <button className="btn btn-dark btn-sm">
                       View Details
                     </button>
                   </div>

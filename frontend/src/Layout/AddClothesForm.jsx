@@ -10,7 +10,17 @@ export default function AddClothesForm() {
     // let originalPrice = Number(data.price);
     // let finalPrice = (originalPrice * Number(data.discount)) / 100;
     // await Api.post("/api/clothes", { ...data , price: finalPrice });
-    await Api.post("/api/clothes", data);
+    const formdata = new FormData();
+    console.log(data);
+    formdata.append("cloth_image", data.cloth_image[0]);
+    formdata.append("category", data.category);
+    formdata.append("color", data.color);
+    formdata.append("discount", data.discount);
+    formdata.append("gender", data.gender);
+    formdata.append("name", data.name);
+    formdata.append("price", data.price);
+    formdata.append("size", data.size);
+    await Api.post("/api/clothes", formdata);
     reset();
     console.log(data);
     redirect("/home");
@@ -105,6 +115,16 @@ export default function AddClothesForm() {
             <option value="Women">Women</option>
             <option value="Unisex">Unisex</option>
           </select>
+        </div>
+        <div className="mb-4">
+          <label className="form-label fw-semibold"> Product Image : </label>
+
+          <input
+            type="file"
+            {...register("cloth_image", { required: true })}
+            className="form-control"
+            accept="image/*"
+          />
         </div>
 
         <div className="mb-2">

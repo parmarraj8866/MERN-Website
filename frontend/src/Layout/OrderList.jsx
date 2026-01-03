@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Api from "../Api/Api";
-import Navbar from "./Navbar";
 
 export default function OrderList() {
   const [orderClothes, setorderClothes] = useState([]);
 
+  console.log(orderClothes);
   async function getorderClothes() {
     const res = await Api.get("/api/orderclothes");
     setorderClothes(res.data.orderList);
   }
+
+  const URL = import.meta.env.VITE_IMAGE_URL
 
   let total = 0;
   for (var i in orderClothes) {
@@ -21,7 +23,7 @@ export default function OrderList() {
   function totalPrice(price, discount) {
     const p = (price * discount) / 100;
     const finalPrice = Number(price) - p;
-    return finalPrice;
+    return finalPrice.toFixed(2);
   }
 
   async function trash(id) {
@@ -44,7 +46,8 @@ export default function OrderList() {
           <span className="text-danger fw-bold">{orderClothes.length}</span>
         </h2>
         <h2>
-          Total Amount : <span className="text-success fw-bold">₹{total}</span>
+          Total Amount :{" "}
+          <span className="text-success fw-bold">₹{total.toFixed(2)}</span>
         </h2>
       </div>
 
@@ -83,6 +86,20 @@ export default function OrderList() {
           {orderClothes?.map((ele, index) => (
             <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
               <div className="shadow-sm border p-3">
+                <div
+                  style={{ width: "100%", height: "100%"}}
+                >
+                  <img
+                    className="mb-2"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                    src={`${URL}/${ele.cloth_image[0]}`}
+                    alt=""
+                  />
+                </div>
                 <div className="card-body">
                   <h5 className="card-title text-capitalize">{ele.name}</h5>
 

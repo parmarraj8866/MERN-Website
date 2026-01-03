@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import Api from "../Api/Api";
 
 export default function ProductContainer(props) {
+  console.log("PROP", props);
   const [clothes, setClothes] = useState([]);
   const [search, setSearch] = useState("");
   const [gender, setGender] = useState("all");
   const [clearAll, setClearAll] = useState("clearAll");
-  const [price2, setprice2] = useState(0);
+  const [price2, setprice2] = useState(null);
   const [category, setCategory] = useState(`${props.name}`);
-
+  const URL = import.meta.env.VITE_IMAGE_URL;
   async function getClothes() {
     const res = await Api.get("/api/clothes");
     setClothes(res.data.clothes);
@@ -21,16 +22,20 @@ export default function ProductContainer(props) {
   }
 
   let title = props.name;
-  async function add({ name, category, color, size, price, discount, gender }) {
-    await Api.post("/api/orderclothes", {
-      name,
-      category,
-      color,
-      size,
-      price,
-      discount,
-      gender,
-    });
+  async function add(ele) {
+    const formData = new FormData();
+
+    formData.append("name", ele.name);
+    formData.append("category", ele.category);
+    formData.append("color", ele.color);
+    formData.append("size", ele.size);
+    formData.append("price", ele.price);
+    formData.append("discount", ele.discount);
+    formData.append("gender", ele.gender);
+
+    formData.append("cloth_image", ele.cloth_image[0]);
+
+    await Api.post("/api/orderclothes", formData);
   }
 
   const filterData = clothes
@@ -65,7 +70,11 @@ export default function ProductContainer(props) {
       if (clearAll == "clearAll") {
         return true;
       }
+
+      return true;
     });
+
+  console.log(gender);
 
   useEffect(() => {
     getClothes();
@@ -92,19 +101,25 @@ export default function ProductContainer(props) {
                 type="radio"
                 name="category"
                 value="shirt"
+                id="shirt"
                 onChange={(e) => setCategory(e.target.value)}
               />
-              <label className="form-check-label">Shirt</label>
+              <label className="form-check-label" htmlFor="shirt">
+                Shirt
+              </label>
             </div>
             <div className="form-check">
               <input
                 className="form-check-input"
                 type="radio"
                 name="category"
-                value="pants"
+                value="pant"
+                id="pant"
                 onChange={(e) => setCategory(e.target.value)}
               />
-              <label className="form-check-label">Pants</label>
+              <label className="form-check-label " htmlFor="pant">
+                Pants
+              </label>
             </div>
             <div className="form-check">
               <input
@@ -112,9 +127,12 @@ export default function ProductContainer(props) {
                 type="radio"
                 name="category"
                 value="jacket"
+                id="jacket"
                 onChange={(e) => setCategory(e.target.value)}
               />
-              <label className="form-check-label">Jacket</label>
+              <label className="form-check-label" htmlFor="jacket">
+                Jacket
+              </label>
             </div>
             <div className="form-check">
               <input
@@ -122,57 +140,107 @@ export default function ProductContainer(props) {
                 type="radio"
                 name="category"
                 value="denim"
+                id="denim"
                 onChange={(e) => setCategory(e.target.value)}
               />
-              <label className="form-check-label">Denim</label>
+              <label className="form-check-label" htmlFor="denim">
+                Denim
+              </label>
             </div>
           </div>
 
+          {/* <div className="mb-4">
+            <h6 className="fw-semibold mb-2">Price:</h6>
+
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="1500"
+                name="price"
+                checked={price2 === 1500}
+                onChange={() => setprice2(price2 === 1500 ? 0 : 1500)}
+              />
+              <label className="form-check-label" htmlFor="1500">
+                Below ₹1500
+              </label>
+            </div>
+
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="3000"
+                name="price"
+                checked={price2 === 3000}
+                onChange={() => setprice2(price2 === 3000 ? 0 : 3000)}
+              />
+              <label className="form-check-label" htmlFor="3000">
+                ₹1500 - ₹3000
+              </label>
+            </div>
+
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="above3000"
+                name="price"
+                checked={price2 === 3001}
+                onChange={() => setprice2(price2 === 3001 ? 0 : 3001)}
+              />
+              <label className="form-check-label" htmlFor="above3000">
+                Above ₹3000
+              </label>
+            </div>
+          </div> */}
+
           <div className="mb-4">
-            <h6 className="fw-semibold mb-2">Price : </h6>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                onChange={(e) => {
-                  if (e.target.checked) {
-                    setprice2(1500);
-                  } else {
-                    setprice2(0);
-                  }
-                }}
-              />
-              <label className="form-check-label">Below ₹1500</label>
-            </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                onChange={(e) => {
-                  if (e.target.checked) {
-                    setprice2(3000);
-                  } else {
-                    setprice2(0);
-                  }
-                }}
-              />
-              <label className="form-check-label">₹1500 - ₹3000</label>
-            </div>
-            <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                onChange={(e) => {
-                  if (e.target.checked) {
-                    setprice2(3001);
-                  } else {
-                    setprice2(0);
-                  }
-                }}
-              />
-              <label className="form-check-label">Above ₹3000</label>
-            </div>
-          </div>
+  <h6 className="fw-semibold mb-2">Price:</h6>
+
+  <div className="form-check">
+    <input
+      className="form-check-input"
+      type="radio"
+      id="1500"
+      name="price"
+      checked={price2 === 1500}
+      onChange={() => setprice2(1500)}
+    />
+    <label className="form-check-label" htmlFor="1500">
+      Below ₹1500
+    </label>
+  </div>
+
+  <div className="form-check">
+    <input
+      className="form-check-input"
+      type="radio"
+      id="3000"
+      name="price"
+      checked={price2 === 3000}
+      onChange={() => setprice2(3000)}
+    />
+    <label className="form-check-label" htmlFor="3000">
+      ₹1500 - ₹3000
+    </label>
+  </div>
+
+  <div className="form-check">
+    <input
+      className="form-check-input"
+      type="radio"
+      id="above3000"
+      name="price"
+      checked={price2 === 3001}
+      onChange={() => setprice2(3001)}
+    />
+    <label className="form-check-label" htmlFor="above3000">
+      Above ₹3000
+    </label>
+  </div>
+</div>
+
 
           <div className="mb-4">
             <h6 className="fw-semibold mb-2">Gender : </h6>
@@ -181,6 +249,7 @@ export default function ProductContainer(props) {
                 className="form-check-input"
                 type="radio"
                 name="gender"
+                id="genderAll"
                 onChange={(e) => {
                   if (e.target.checked) {
                     setGender("all");
@@ -189,41 +258,50 @@ export default function ProductContainer(props) {
                   }
                 }}
               />
-              <label className="form-check-label">All</label>
+              <label className="form-check-label" htmlFor="genderAll">
+                All
+              </label>
             </div>
             <div className="form-check">
               <input
                 className="form-check-input"
                 type="radio"
                 name="gender"
+                id="genderMen"
                 onChange={(e) => {
                   if (e.target.checked) {
                     setGender("Men");
                   }
                 }}
               />
-              <label className="form-check-label">Men</label>
+              <label className="form-check-label" htmlFor="genderMen">
+                Men
+              </label>
             </div>
             <div className="form-check">
               <input
                 className="form-check-input"
                 type="radio"
                 name="gender"
+                id="genderWomen"
                 onChange={(e) => {
                   if (e.target.checked) {
-                    setGender("Female");
+                    setGender("Women");
                   } else {
                     ("");
                   }
                 }}
               />
-              <label className="form-check-label">Female</label>
+              <label className="form-check-label" htmlFor="genderWomen">
+                Women
+              </label>
             </div>
             <div className="form-check">
               <input
                 className="form-check-input"
                 type="radio"
                 name="gender"
+                id="genderUnisex"
                 onChange={(e) => {
                   if (e.target.checked) {
                     setGender("Unisex");
@@ -232,7 +310,9 @@ export default function ProductContainer(props) {
                   }
                 }}
               />
-              <label className="form-check-label">Unisex</label>
+              <label className="form-check-label" htmlFor="genderUnisex">
+                Unisex
+              </label>
             </div>
           </div>
 
@@ -252,7 +332,7 @@ export default function ProductContainer(props) {
       </div>
 
       <div style={{ marginLeft: "300px" }} className=" w-100 ">
-        <div className="py-3" >
+        <div className="py-3">
           <input
             type="text"
             className="form-control"
@@ -264,22 +344,39 @@ export default function ProductContainer(props) {
           <div className="d-flex flex-wrap gap-3 fadeInEffect">
             {filterData?.map((ele, index) => (
               <div key={index}>
-                <div className="shadow-sm border p-3 fadeInEffect">
-                  <div className="card-body">
-                    <h5 className="card-title text-capitalize">{ele.name}</h5>
+                <div className="shadow-sm border p-3 fadeInEffect text-center">
+                  <img
+                    className="mb-3 border rounded"
+                    style={{
+                      width: "100%",
+                      maxWidth: "250px",
+                      height: "250px",
+                      objectFit: "cover",
+                    }}
+                    src={`${URL}/${ele.cloth_image[0]}`}
+                    alt={ele.name}
+                  />
 
-                    <p className="my-1 text-muted">Category: {ele.category}</p>
+                  <div className="card-body p-0 text-start">
+                    <h6 className="card-title text-capitalize mb-1">
+                      {ele.name}
+                    </h6>
 
-                    <p className="mb-1">Color: {ele.color}</p>
-                    <p className="mb-1">Gender : {ele.gender}</p>
+                    <small className="text-muted d-block">
+                      Category: {ele.category}
+                    </small>
 
-                    <p className="mb-1">Size: {ele.size?.toUpperCase()}</p>
+                    <small className="d-block">Color: {ele.color}</small>
+                    <small className="d-block">Gender: {ele.gender}</small>
+                    <small className="d-block">
+                      Size: {ele.size?.toUpperCase()}
+                    </small>
 
-                    <div>
-                      <span className="text-decoration-line-through text-muted me-1">
+                    <div className="mt-2">
+                      <span className="text-decoration-line-through text-muted me-2">
                         ₹{ele.price}
                       </span>
-                      <span className="fw-semibold text-success fs-5">
+                      <span className="fw-semibold text-success fs-6">
                         ₹{totalPrice(ele.price, ele.discount)}
                       </span>
                     </div>
@@ -287,8 +384,8 @@ export default function ProductContainer(props) {
                     <small className="text-danger">{ele.discount}% OFF</small>
                   </div>
 
-                  <div className="card-footer bg-white border-0 mt-2">
-                    <div className="d-flex gap-2">
+                  <div className="card-footer bg-white border-0 px-0 mt-3">
+                    <div className="d-flex flex-wrap gap-2 justify-content-center">
                       <button
                         onClick={() =>
                           add({
@@ -299,31 +396,21 @@ export default function ProductContainer(props) {
                             price: ele.price,
                             discount: ele.discount,
                             gender: ele.gender,
+                            cloth_image: ele.cloth_image,
                           })
                         }
                         className="btn btn-success btn-sm"
                       >
                         Add to Cart
                       </button>
+
                       <button className="btn btn-primary btn-sm">
                         View Details
                       </button>
 
-                      {/* <button className="btn btn-warning btn-sm">Edit </button> */}
-                      {/* <button
-                      onClick={() => trash(ele._id)}
-                      className="btn btn-danger btn-sm"
-                    >
-                      Remove{" "}
-                    </button> */}
                       <a href="/home" className="btn btn-dark btn-sm">
-                        Back{" "}
+                        Back
                       </a>
-
-                      {/* <button className="btn btn-dark btn-sm">View Details</button> */}
-
-                      {/* <button className="btn btn-warning btn-sm">Edit Order</button> */}
-                      {/* <button className="btn btn-danger btn-sm">Remove Order</button> */}
                     </div>
                   </div>
                 </div>

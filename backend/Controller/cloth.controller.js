@@ -2,8 +2,8 @@ const Clothes = require("../Model/cloth.model")
 
 exports.CreateClothes = async (req, res) => {
     const { name, category, color, size, price, discount, gender } = req.body
-    // const image = req.file.filename 
-    const clothes = await Clothes.create({ name, category, color, size, price, discount, gender })
+    const cloth_image = req?.file?.filename
+    const clothes = await Clothes.create({ name, category, color, size, price, discount, gender, cloth_image })
     res.send({
         suceess: true,
         clothes

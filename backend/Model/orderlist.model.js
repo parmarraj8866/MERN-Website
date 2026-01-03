@@ -8,7 +8,10 @@ const orderList = new Schema({
     image: String,
     price: Number,
     discount: Number,
-    gender: String
+    gender: String,
+    cloth_image: {
+        type: [String]
+    }
 })
 
 module.exports = model("orderList", orderList)

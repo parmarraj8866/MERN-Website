@@ -44,7 +44,7 @@ export default function App() {
             path="/pants"
             element={
               <>
-                <ProductContainer name="Pants" />
+                <ProductContainer name="pant" />
               </>
             }
           />
