@@ -408,7 +408,7 @@ export default function ProductContainer(props) {
                         View Details
                       </button>
 
-                      <a href="/home" className="btn btn-dark btn-sm">
+                      <a href="/" className="btn btn-dark btn-sm">
                         Back
                       </a>
                     </div>

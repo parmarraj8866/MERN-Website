@@ -23,7 +23,7 @@ export default function AddClothesForm() {
     await Api.post("/api/clothes", formdata);
     reset();
     console.log(data);
-    redirect("/home");
+    redirect("/");
   }
 
   return (
@@ -129,7 +129,7 @@ export default function AddClothesForm() {
 
         <div className="mb-2">
           <button className="btn btn-info me-2">Create Product</button>
-          <a href="/home" className="btn btn-dark">
+          <a href="/" className="btn btn-dark">
             Back Home
           </a>
         </div>

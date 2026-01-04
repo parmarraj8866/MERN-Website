@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Api from "../Api/Api";
+import { NavLink } from "react-router-dom";
 
 export default function WardrobeEssentials() {
   const [clothes, setClothes] = useState([]);
   const URL = import.meta.env.VITE_IMAGE_URL;
-
   async function getClothes() {
     const res = await Api.get("/api/clothes");
     setClothes(res.data.clothes);
@@ -112,9 +112,9 @@ export default function WardrobeEssentials() {
                       Add to Cart
                     </button>
 
-                    <button className="btn btn-dark btn-sm">
+                    <NavLink to={`/singleProductview/${ele._id}`} className="btn btn-dark btn-sm">
                       View Details
-                    </button>
+                    </NavLink>
                   </div>
                 </div>
               </div>

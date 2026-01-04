@@ -6,7 +6,9 @@ import Api from "../Api/Api";
 export default function Navbar() {
   const [id, setId] = useState(false);
   const [orderClothes, setorderClothes] = useState([]);
+  let count = orderClothes?.length
 
+  console.log(orderClothes)
   async function getorderClothes() {
     const res = await Api.get("/api/orderclothes");
     setorderClothes(res.data.orderList);
@@ -22,7 +24,7 @@ export default function Navbar() {
       // style={{ backgroundColor: "#f2f2f2ff"}}
       style={{ backgroundColor: "#f5f5f5ff" , zIndex : "100"}}
     >
-      <a className="navbar-brand fs-3" href="/home">
+      <a className="navbar-brand fs-3" href="/">
         FashionAdda
       </a>
       <button
@@ -40,7 +42,7 @@ export default function Navbar() {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav ms-auto gap-4">
           <li className="nav-item active">
-            <a className="nav-link fs-5 " href="/home">
+            <a className="nav-link fs-5 " href="/">
               Home
             </a>
           </li>
@@ -106,7 +108,7 @@ export default function Navbar() {
               }}
             >
               <span className="fs-6 text-white fw-bold">
-                {orderClothes.length}
+                {count}
               </span>
             </p>
           </li>

@@ -25,14 +25,18 @@ import SideLayout from "./Layout/SideLayout";
 import AddClothesForm from "./Layout/AddClothesForm";
 import ContactFormUI from "./Layout/Contact";
 import SingleProductView from "./Layout/SingleProductView";
+import PrivateRoute from "./PrivateRoute/Privateroute";
+import AboutProduct from "./Layout/AboutProduct";
 
 export default function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        
+       
         <Routes>
-          <Route
+         <Route element={<><Navbar /><PrivateRoute/></>}>
+           <Route
             path="/shirts"
             element={
               <>
@@ -66,7 +70,7 @@ export default function App() {
           />
 
           <Route
-            path="/home"
+            path="/"
             element={
               <>
                 <Home />
@@ -76,11 +80,13 @@ export default function App() {
             }
           />
           <Route path="/create-product" element={<AddClothesForm/>}/>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
           <Route path="/orderlist" element={<OrderList />} />
           <Route path="/contact" element={<ContactFormUI />} />
-          <Route path="/singleProductview" element={<SingleProductView />} />
+          <Route path="/singleProductview/:id" element={<AboutProduct />} />
+         </Route>
+
+            <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -134,7 +134,7 @@ export default function OrderList() {
                     >
                       Remove{" "}
                     </button>
-                    <a href="/home" className="btn btn-primary btn-sm">
+                    <a href="/" className="btn btn-primary btn-sm">
                       Back{" "}
                     </a>
 
