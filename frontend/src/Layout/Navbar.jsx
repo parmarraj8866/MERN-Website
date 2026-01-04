@@ -1,28 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { FaCircleUser } from "react-icons/fa6";
-import { FiShoppingCart } from "react-icons/fi";
+import { FiLogOut, FiShoppingCart } from "react-icons/fi";
 import Api from "../Api/Api";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [id, setId] = useState(false);
   const [orderClothes, setorderClothes] = useState([]);
-  let count = orderClothes?.length
+  let count = orderClothes?.length; // without ? <--- not work login form
+  let redirect = useNavigate();
 
-  console.log(orderClothes)
   async function getorderClothes() {
     const res = await Api.get("/api/orderclothes");
     setorderClothes(res.data.orderList);
   }
 
+  async function logout() {
+    const res = await Api.get("/api/user/logout");
+    if (res.data.success) {
+      alert(res.data.message);
+      redirect("/login");
+    } else {
+      alert(res.data.message);
+    }
+  }
+
+  async function user() {
+    const res = await Api.get("/api/user/checkAuth");
+    if (res.data.success) {
+      setId(res.data.success);
+    } else {
+      setId(res.data.success);
+    }
+  }
+
   useEffect(() => {
     getorderClothes();
+    user();
   }, []);
 
   return (
     <nav
       className="navbar navbar-expand-lg  px-5 py-3 fadeInEffect sticky-top "
       // style={{ backgroundColor: "#f2f2f2ff"}}
-      style={{ backgroundColor: "#f5f5f5ff" , zIndex : "100"}}
+      style={{ backgroundColor: "#f5f5f5ff", zIndex: "100" }}
     >
       <a className="navbar-brand fs-3" href="/">
         FashionAdda
@@ -71,6 +92,7 @@ export default function Navbar() {
               Contact
             </a>
           </li>
+
           <li
             className="nav-item active d-flex align-items-center"
             style={{ cursor: "pointer" }}
@@ -89,10 +111,17 @@ export default function Navbar() {
                   </a>
                 </>
               ) : (
-                <button className="btn btn-danger">Logout</button>
+                // <button className="btn btn-danger">Logout</button>
+                <>
+                  <div onClick={logout}>
+                    <FiLogOut className="fs-4 me-1" />
+                    <span className="text-danger">Logout</span>
+                  </div>
+                </>
               )}
             </div>
           </li>
+
           <li className="nav-item active d-flex align-items-center relative">
             <a href="/orderlist" className="text-decoration-none text-dark ">
               <FiShoppingCart className="fs-2" style={{ cursor: "pointer" }} />
@@ -107,16 +136,14 @@ export default function Navbar() {
                 marginBottom: "40px",
               }}
             >
-              <span className="fs-6 text-white fw-bold">
-                {count}
-              </span>
+              <span className="fs-6 text-white fw-bold">{count}</span>
             </p>
           </li>
-          <li className="mt-1">
+          {/* <li className="mt-1">
             <a href="/create-product" className="btn btn-info">
               Create-Product
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>

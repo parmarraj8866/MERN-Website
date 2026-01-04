@@ -76,13 +76,23 @@ exports.checkAuth = async (req, res) => {
         return res.json({
             success: false,
             message: "Please Login",
-            user : null
+            user: null
         })
     }
 
     res.json({
         success: true,
         message: "Login!",
-        user : token
+        user: token
+    })
+}
+
+
+exports.logout = async (req, res) => {
+    req.session = null
+
+    res.json({
+        success: true,
+        message: "Successfully Logout!"
     })
 }

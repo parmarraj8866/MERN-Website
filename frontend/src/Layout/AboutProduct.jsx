@@ -6,7 +6,7 @@ export default function AboutProduct() {
   const [singleProduct, setsingleProduct] = useState([]);
 
   const { id } = useParams();
-  const URL = import.meta.env.VITE_IMAGE_URL
+  const URL = import.meta.env.VITE_IMAGE_URL;
 
   console.log(singleProduct);
 
@@ -16,6 +16,12 @@ export default function AboutProduct() {
     setsingleProduct(res.data.cloth);
   }
 
+  function totalPrice(price, discount) {
+    const p = (price * discount) / 100;
+    const finalPrice = Number(price) - p;
+    return finalPrice;
+  }
+
   console.log(singleProduct);
 
   useEffect(() => {
@@ -23,53 +29,66 @@ export default function AboutProduct() {
   }, [id]);
 
   return (
-    <div className="col-sm-6 col-md-4 col-lg-3">
-      <div className="product-card shadow-sm border rounded h-100">
-        <div className="product-img">
-          <img
-            src={`${URL}/${singleProduct.cloth_image}`}
-            alt={singleProduct.name}
-          />
-          <span className="discount-badge">{singleProduct.discount}% OFF</span>
-        </div>
+    <div className="container my-5">
+      <div className="text-center">
+        <h2 className="product-title my-4">Product Overview</h2>
+      </div>
 
-        <div className="card-body p-3">
-          <h6 className="fw-bold text-capitalize mb-1">{singleProduct.name}</h6>
-          <small className="text-muted">{singleProduct.category}</small>
+      <div className="row justify-content-center">
+        <div className="col-lg-10">
+          <div className="product-single-card shadow-sm border rounded p-4">
+            <div className="row g-4 align-items-center">
+              <div className="col-md-5">
+                <div className="single-product-img text-center">
+                  <img
+                    src={`${URL}/${singleProduct.cloth_image}`}
+                    alt={singleProduct.name}
+                    className="img-fluid"
+                  />
+                  <span className="discount-badge">
+                    {singleProduct.discount}% OFF
+                  </span>
+                </div>
+              </div>
 
-          <div className="d-flex justify-content-between mt-2">
-            <span>
-              Color: <strong>{singleProduct.color}</strong>
-            </span>
-            <span>
-              Size: <strong>{singleProduct.size?.toUpperCase()}</strong>
-            </span>
-          </div>
+              <div className="col-md-7">
+                <p className="product-line">
+                  <strong className="me-2">Product Name :</strong>{" "}
+                  {singleProduct.name}
+                </p>
 
-          <div className="mt-2">
-            <span className="text-muted text-decoration-line-through me-2">
-              ₹{singleProduct.price}
-            </span>
-            <span className="fw-bold text-success fs-5">
-              {/* ₹{totalPrice(singleProduct.price, singleProduct.discount)} */}
-            </span>
-          </div>
-        </div>
+                <p className="product-line">
+                  <strong className="me-2">Category :</strong>{" "}
+                  {singleProduct.category}
+                </p>
 
-        <div className="card-footer bg-white border-0 p-3 pt-0">
-          <div className="d-grid gap-2">
-            <button className="btn btn-dark btn-sm">View Details</button>
+                <p className="product-line">
+                  <strong className="me-2">Color :</strong>{" "}
+                  {singleProduct.color}
+                </p>
 
-            <div className="d-flex gap-2">
-              <button
-                onClick={() => trash(singleProduct._id)}
-                className="btn btn-danger btn-sm w-50"
-              >
-                Remove
-              </button>
-              <a href="/" className="btn btn-outline-primary btn-sm w-50">
-                Back
-              </a>
+                <p className="product-line">
+                  <strong className="me-2">Size :</strong>{" "}
+                  {singleProduct.size?.toUpperCase()}
+                </p>
+                <p className="product-line">
+                  <strong className="me-2">For :</strong> {singleProduct.gender}
+                </p>
+
+                <p className="product-line price-line">
+                  <strong className="me-2">Price :</strong>
+                  <span className="old-price">₹{singleProduct.price}</span>
+                  <span className="new-price fs-4">
+                    ₹{totalPrice(singleProduct.price, singleProduct.discount)}
+                  </span>
+                </p>
+
+                <div className="mt-4">
+                  <a href="/" className="btn btn-outline-primary px-4">
+                    Back
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

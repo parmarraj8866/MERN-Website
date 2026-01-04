@@ -93,8 +93,8 @@ export default function OrderList() {
                     className="mb-2"
                     style={{
                       width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
+                      height: "350px",
+                      objectFit: "contain",
                     }}
                     src={`${URL}/${ele.cloth_image[0]}`}
                     alt=""
@@ -123,9 +123,7 @@ export default function OrderList() {
 
                 <div className="card-footer bg-white border-0 mt-2">
                   <div className="d-flex gap-2">
-                    <button className="btn btn-dark btn-sm">
-                      View Details
-                    </button>
+                  
 
                     {/* <button className="btn btn-warning btn-sm">Edit </button> */}
                     <button

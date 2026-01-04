@@ -351,7 +351,7 @@ export default function ProductContainer(props) {
                       width: "100%",
                       maxWidth: "250px",
                       height: "250px",
-                      objectFit: "cover",
+                      objectFit: "contain",
                     }}
                     src={`${URL}/${ele.cloth_image[0]}`}
                     alt={ele.name}
