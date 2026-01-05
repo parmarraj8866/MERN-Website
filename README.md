@@ -17,7 +17,7 @@ Both **frontend and backend** are built separately to follow real-world developm
 ### 🔐 User Authentication
 - Signup with email & password  
 - Login & Logout  
-- Secure authentication using JWT  
+- Secure authentication
 - Encrypted passwords  
 
 ### 🛍️ Clothing Store Features
@@ -40,7 +40,7 @@ Both **frontend and backend** are built separately to follow real-world developm
 
 ### Frontend
 - React.js  
-- CSS / Tailwind CSS  
+- CSS  
 - Axios  
 
 ### Backend
@@ -50,9 +50,8 @@ Both **frontend and backend** are built separately to follow real-world developm
 ### Database
 - MongoDB  
 
-### Authentication & Security
-- JWT (JSON Web Token)  
-- bcrypt  
+### Authentication & Security 
+- bcrypt 
 
 ---
 
@@ -63,21 +62,13 @@ Both **frontend and backend** are built separately to follow real-world developm
 | Section | Screenshot |
 |------|-----------|
 | Home Page | ![Home](./frontend/public/Github%20Images/Home.png) |
-| All Products | ![Products](./frontend/public/Github%20Images/All Product Section.png) |
-| Shop By Category | ![Category](./frontend/public/Github%20Images/Shop By Category.png) |
-| Wardrobe Essentials | ![Wardrobe](./frontend/public/Github%20Images/Wardrobe Essentials.png) |
-| Product Details | ![Product](./frontend/public/Github%20Images/about product.png) |
+| All Products | ![Products](./frontend/public/Github%20Images/All%20Product%20Section.png) |
+| Shop By Category | ![Category](./frontend/public/Github%20Images/Shop%20By%20Category.png) |
+| Wardrobe Essentials | ![Wardrobe](./frontend/public/Github%20Images/Wardrobe%20Essentials.png) |
+| Product Details | ![Product](./frontend/public/Github%20Images/about%20product.png) |
 | Add To Cart | ![Cart](./frontend/public/Github%20Images/addtocart.png) |
-| Orders | ![Orders](./screenshots/Order section.png) |
-| Login | ![Login](./screenshots/login.png) |
-| Signup | ![Signup](./screenshots/signup.png) |
-| Contact | ![Contact](./screenshots/Contact.png) |
-| Footer | ![Footer](./screenshots/footer.png) |
-
----
-
-## ⚙️ Installation & Setup
-
-### 1️⃣ Clone Repository
-```bash
-git clone https://github.com/your-username/your-repo-name.git
+| Orders | ![Orders](./frontend/public/Github%20Images/Order%20section.png) |
+| Login | ![Login](./frontend/public/Github%20Images/login.png) |
+| Signup | ![Signup](./frontend/public/Github%20Images/signup.png) |
+| Contact | ![Contact](./frontend/public/Github%20Images/Contact.png) |
+| Footer | ![Footer](./frontend/public/Github%20Images/footer.png) |
