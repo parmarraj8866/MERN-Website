@@ -16,19 +16,20 @@ import "./Css/Footer.css";
 import Navbar from "./Layout/Navbar";
 import Home from "./Pages/Home";
 import ShopBycategory from "./Pages/ShopCategory";
-import WardrobeEssentials from "./Layout/WardrobeEssentials";
+import WardrobeEssentials from "./Pages/WardrobeEssentials";
 import Login from "./Layout/Login";
 import Signup from "./Layout/Signup";
-import OrderList from "./Layout/OrderList";
+import OrderList from "./Pages/OrderList";
 import ProductContainer from "./Pages/ProductContainer";
 import SideLayout from "./Layout/SideLayout";
 import AddClothesForm from "./Layout/AddClothesForm";
-import ContactFormUI from "./Layout/Contact";
+import ContactFormUI from "./Pages/Contact";
 import SingleProductView from "./Layout/SingleProductView";
 import PrivateRoute from "./PrivateRoute/Privateroute";
 import AboutProduct from "./Layout/AboutProduct";
-import Footer from "./Layout/Footer";
+import Footer from "./Pages/Footer";
 import BestSeller from "./Pages/BestSeller";
+import AddToCart from "./Layout/AddToCart";
 
 export default function App() {
   return (
@@ -122,6 +123,15 @@ export default function App() {
                 </>
               }
             />
+            {/* <Route
+              path="/addtocart/:id"
+              element={
+                <>
+                  <AddToCart />
+                  <Footer />
+                </>
+              }
+            /> */}
           </Route>
 
           <Route path="/login" element={<Login />} />

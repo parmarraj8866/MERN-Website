@@ -10,6 +10,15 @@ export default function WardrobeEssentials() {
     setClothes(res.data.clothes);
   }
 
+  // const [count, setCount] = useState(0);
+  // function countFNX(val) {
+  //   if (val == "plus") {
+  //     setCount(count + 1);
+  //   } else {
+  //     count <= 0 ? 0 : setCount(count - 1);
+  //   }
+  // }
+
   async function add(ele) {
     // console.log(ele)
     const formData = new FormData();
@@ -94,6 +103,22 @@ export default function WardrobeEssentials() {
                       </div>
 
                       <small className="text-danger">{ele.discount}% OFF</small>
+
+                      {/* <div className="d-flex justify-content-center align-items-center gap-3">
+                        <button
+                          onClick={() => countFNX("minus")}
+                          className="btn btn-danger"
+                        >
+                          -
+                        </button>
+                        <span className="fs-4">{count}</span>
+                        <button
+                          onClick={() => countFNX("plus")}
+                          className="btn btn-success"
+                        >
+                          +
+                        </button>
+                      </div> */}
                     </div>
 
                     <div className="card-footer bg-white border-0 mt-2">

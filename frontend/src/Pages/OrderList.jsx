@@ -3,14 +3,16 @@ import Api from "../Api/Api";
 
 export default function OrderList() {
   const [orderClothes, setorderClothes] = useState([]);
+  const [search, setSearch] = useState("");
+  const [sorts, setSort] = useState("");
 
-  console.log(orderClothes);
+  // console.log(orderClothes);
   async function getorderClothes() {
     const res = await Api.get("/api/orderclothes");
     setorderClothes(res.data.orderList);
   }
 
-  const URL = import.meta.env.VITE_IMAGE_URL
+  const URL = import.meta.env.VITE_IMAGE_URL;
 
   let total = 0;
   for (var i in orderClothes) {
@@ -31,6 +33,28 @@ export default function OrderList() {
     getorderClothes();
   }
 
+  const filterData = orderClothes
+    .filter((ele) => {
+      return ele.name.toLowerCase().includes(search.toLowerCase());
+    })
+    .sort((a, b) => {
+      if (sorts == "asc") {
+        return a.name.localeCompare(b.name);
+      }
+      if (sorts == "desc") {
+        return b.name.localeCompare(a.name);
+      }
+    })
+    .sort((a, b) => {
+      if (sorts == "price-asc") {
+        return a.price - b.price;
+      }
+      if (sorts == "price-desc") {
+        return b.price - a.price;
+      }
+    });
+
+  console.log("filterData", filterData);
   useEffect(() => {
     getorderClothes();
   }, []);
@@ -58,19 +82,26 @@ export default function OrderList() {
               type="text"
               className="form-control border-success"
               placeholder="Search orders..."
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
 
           <div className="d-flex gap-2 ">
-            <select className="form-select border-success">
+            <select
+              className="form-select border-success"
+              onChange={(e) => setSort(e.target.value)}
+            >
               <option value="" disabled selected>
                 Sort by Name
               </option>
-              <option value="name-asc">Name: A-Z</option>
-              <option value="name-desc">Name: Z-A</option>
+              <option value="asc">Name: A-Z</option>
+              <option value="desc">Name: Z-A</option>
             </select>
 
-            <select className="form-select border-success">
+            <select
+              className="form-select border-success"
+              onChange={(e) => setSort(e.target.value)}
+            >
               <option value="" disabled selected>
                 Sort by Price
               </option>
@@ -83,12 +114,10 @@ export default function OrderList() {
 
       <div className="container my-5">
         <div className="row g-2">
-          {orderClothes?.map((ele, index) => (
+          {filterData?.map((ele, index) => (
             <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
               <div className="shadow-sm border p-3">
-                <div
-                  style={{ width: "100%", height: "100%"}}
-                >
+                <div style={{ width: "100%", height: "100%" }}>
                   <img
                     className="mb-2"
                     style={{
@@ -123,8 +152,6 @@ export default function OrderList() {
 
                 <div className="card-footer bg-white border-0 mt-2">
                   <div className="d-flex gap-2">
-                  
-
                     {/* <button className="btn btn-warning btn-sm">Edit </button> */}
                     <button
                       onClick={() => trash(ele._id)}
