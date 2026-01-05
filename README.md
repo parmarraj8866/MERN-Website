@@ -68,7 +68,8 @@ Both **frontend and backend** are built separately to follow real-world developm
 | Product Details | ![Product](./frontend/public/Github%20Images/about%20product.png) |
 | Add To Cart | ![Cart](./frontend/public/Github%20Images/addtocart.png) |
 | Orders | ![Orders](./frontend/public/Github%20Images/Order%20section.png) |
-| Login | ![Login](./frontend/public/Github%20Images/login.png) |
-| Signup | ![Signup](./frontend/public/Github%20Images/signup.png) |
+| Login | ![Login](./frontend/public/Github%20Images/signup.png) |
+| Signup | ![Signup](./frontend/public/Github%20Images/login.png) |
 | Contact | ![Contact](./frontend/public/Github%20Images/Contact.png) |
 | Footer | ![Footer](./frontend/public/Github%20Images/footer.png) |
+
