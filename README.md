@@ -1,82 +1,73 @@
-# 🛍️ MERN Stack E-Commerce Website
+# 👕 Clothing E-Commerce Website (MERN Stack)
 
-A modern, responsive, and fully functional **E-Commerce Web Application** built using the **MERN Stack (MongoDB, Express, React, Node.js)**.  
-This project focuses on clean UI, smooth user experience, and secure authentication.
-
----
-
-## ✨ Highlights
-
-- Modern & responsive UI
-- Secure authentication system
-- Real-world e-commerce features
-- Clean folder structure
-- Easy to scale and maintain
+A modern **Clothing E-Commerce Web Application** built using **Frontend + Backend architecture** with the **MERN Stack**.  
+This project is focused on fashion products, clean UI, smooth user flow, and secure authentication.
 
 ---
 
-## 🚀 Features
+## 🧵 About The Project
 
-### 🔐 Authentication
-- User Signup
-- User Login
-- User Logout
-- JWT based authentication
-- Encrypted passwords
-
-### 🛒 E-Commerce
-- View all products
-- Shop by category
-- Product details page
-- Add to cart
-- Order section
-
-### 🧑‍💻 Pages & Sections
-- Home
-- All Products
-- Shop By Category
-- Wardrobe Essentials
-- Product Details
-- Cart
-- Orders
-- Contact
-- Footer
-- Login / Signup
+This website is designed for an online **clothing store** where users can browse fashion products, explore categories, add items to cart, and place orders.  
+Both **frontend and backend** are built separately to follow real-world development practices.
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Key Features
+
+### 🔐 User Authentication
+- Signup with email & password  
+- Login & Logout  
+- Secure authentication using JWT  
+- Encrypted passwords  
+
+### 🛍️ Clothing Store Features
+- View all clothing products  
+- Shop clothes by category  
+- Wardrobe essentials section  
+- Product details page  
+- Add to cart functionality  
+- Order section  
+
+### 🎨 UI & Experience
+- Modern fashion-focused UI  
+- Responsive design  
+- Smooth navigation  
+- Clean footer & contact page  
+
+---
+
+## 🛠️ Tech Stack Used
 
 ### Frontend
-- React.js
-- CSS / Tailwind CSS
-- Axios
+- React.js  
+- CSS / Tailwind CSS  
+- Axios  
 
 ### Backend
-- Node.js
-- Express.js
+- Node.js  
+- Express.js  
 
 ### Database
-- MongoDB
+- MongoDB  
 
-### Security
-- JWT (JSON Web Token)
-- bcrypt
+### Authentication & Security
+- JWT (JSON Web Token)  
+- bcrypt  
 
 ---
 
-## 📸 Screenshots
+## 📸 Website Screenshots
 
-> All UI screenshots are available below:
+> Below are some UI previews from the clothing website:
 
-| Page | Preview |
-|-----|--------|
-| Home | ![Home](./screenshots/Home.png) |
-| All Products | ![All Products](./screenshots/All Product Section.png) |
-| Shop By Category | ![Category](./screenshots/Shop By Category.png) |
-| Wardrobe Essentials | ![Wardrobe](./screenshots/Wardrobe Essentials.png) |
-| Product Details | ![Product](./screenshots/about product.png) |
-| Add To Cart | ![Cart](./screenshots/addtocart.png) |
+| Section | Screenshot |
+|------|-----------|
+| Home Page | ![Home](./frontend/public/Github%20Images/Home.png) |
+| All Products | ![Products](./frontend/public/Github%20Images/All Product Section.png) |
+| Shop By Category | ![Category](./frontend/public/Github%20Images/Shop By Category.png) |
+| Wardrobe Essentials | ![Wardrobe](./frontend/public/Github%20Images/Wardrobe Essentials.png) |
+| Product Details | ![Product](./frontend/public/Github%20Images/about product.png) |
+| Add To Cart | ![Cart](./frontend/public/Github%20Images/addtocart.png) |
 | Orders | ![Orders](./screenshots/Order section.png) |
 | Login | ![Login](./screenshots/login.png) |
 | Signup | ![Signup](./screenshots/signup.png) |
