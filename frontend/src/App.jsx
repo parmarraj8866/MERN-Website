@@ -123,7 +123,7 @@ export default function App() {
                 </>
               }
             />
-            {/* <Route
+            <Route
               path="/addtocart/:id"
               element={
                 <>
@@ -131,7 +131,7 @@ export default function App() {
                   <Footer />
                 </>
               }
-            /> */}
+            />
           </Route>
 
           <Route path="/login" element={<Login />} />

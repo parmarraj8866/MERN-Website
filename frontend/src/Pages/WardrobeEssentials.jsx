@@ -12,19 +12,7 @@ export default function WardrobeEssentials() {
 
   console.log(clothes);
 
-  // const [count, setCount] = useState(0);
-  // function countFNX(val) {
-  //   if (val == "plus") {
-  //     setCount(count + 1);
-  //   } else {
-  //     count <= 0 ? 0 : setCount(count - 1);
-  //   }
-  // }
-
-  async function add(product_id) {
-    console.log(product_id);
-    await Api.post("/api/orderclothes", { product_id });
-  }
+ 
 
   function totalPrice(price, discount) {
     const p = (price * discount) / 100;
@@ -94,31 +82,17 @@ export default function WardrobeEssentials() {
 
                       <small className="text-danger">{ele.discount}% OFF</small>
 
-                      {/* <div className="d-flex justify-content-center align-items-center gap-3">
-                        <button
-                          onClick={() => countFNX("minus")}
-                          className="btn btn-danger"
-                        >
-                          -
-                        </button>
-                        <span className="fs-4">{count}</span>
-                        <button
-                          onClick={() => countFNX("plus")}
-                          className="btn btn-success"
-                        >
-                          +
-                        </button>
-                      </div> */}
+                     
                     </div>
 
                     <div className="card-footer bg-white border-0 mt-2">
                       <div className="d-grid gap-2">
-                        <button
-                          onClick={() => add(ele._id)}
+                        <NavLink
+                          to={`/addtocart/${ele._id}`}
                           className="btn btn-success btn-sm"
                         >
                           Add to Cart
-                        </button>
+                        </NavLink>
 
                         <NavLink
                           to={`/singleProductview/${ele._id}`}

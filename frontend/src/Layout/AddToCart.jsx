@@ -1,19 +1,36 @@
 import React, { useEffect, useState } from "react";
 import Api from "../Api/Api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function AddToCart() {
+export default function AboutProduct() {
   const [singleProduct, setsingleProduct] = useState([]);
 
   const { id } = useParams();
   const URL = import.meta.env.VITE_IMAGE_URL;
+  const redirect = useNavigate()
 
-  console.log(singleProduct);
+  // console.log(singleProduct);
 
   async function getSingleProduct() {
     const res = await Api.get(`/api/clothes/${id}`);
-    console.log("res", res);
+    // console.log("res", res);
     setsingleProduct(res.data.cloth);
+  }
+
+  const [count, setCount] = useState(1);
+  function countFNX(val) {
+    if (val == "plus") {
+      setCount(count + 1);
+    } else {
+      count <= 0 ? 0 : setCount(count - 1);
+    }
+  }
+
+  async function add(product_id) {
+    let qty = count
+    console.log(product_id);
+    await Api.post("/api/orderclothes", { product_id, qty });
+    redirect("/orderlist")
   }
 
   function totalPrice(price, discount) {
@@ -22,7 +39,7 @@ export default function AddToCart() {
     return finalPrice;
   }
 
-  console.log(singleProduct);
+  // console.log(singleProduct);
 
   useEffect(() => {
     getSingleProduct();
@@ -31,7 +48,7 @@ export default function AddToCart() {
   return (
     <div className="container my-5">
       <div className="text-center">
-        <h2 className="product-title my-4">Product Overview</h2>
+        <h2 className="product-title my-4">Product Add To Cart</h2>
       </div>
 
       <div className="row justify-content-center">
@@ -83,8 +100,30 @@ export default function AddToCart() {
                   </span>
                 </p>
 
-                <div className="mt-4">
-                  <a href="/" className="btn btn-outline-primary px-4">
+                <div className="d-flex align-items-center gap-3">
+                  <button
+                    onClick={() => countFNX("minus")}
+                    className="btn btn-danger"
+                  >
+                    -
+                  </button>
+                  <span className="fs-4">{count}</span>
+                  <button
+                    onClick={() => countFNX("plus")}
+                    className="btn btn-success"
+                  >
+                    +
+                  </button>
+                </div>
+
+                <div className="mt-4 ">
+                  <button
+                    className="btn btn-success me-3"
+                    onClick={() => add(singleProduct._id)}
+                  >
+                    Add To Cart
+                  </button>
+                  <a href="/" className="btn btn-outline-dark px-4">
                     Back
                   </a>
                 </div>

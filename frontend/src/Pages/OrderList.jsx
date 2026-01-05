@@ -6,23 +6,21 @@ export default function OrderList() {
   const [search, setSearch] = useState("");
   const [sorts, setSort] = useState("");
 
-  console.log(orderClothes);
   async function getorderClothes() {
     const res = await Api.get("/api/orderclothes");
     console.log("res.data.orderList.product_id", res?.data?.orderList);
     setorderClothes(res.data.orderList);
   }
 
-  
-
   const URL = import.meta.env.VITE_IMAGE_URL;
 
   let total = 0;
   for (var i in orderClothes) {
-    let price = orderClothes[i].price;
-    const p = (price * orderClothes[i].discount) / 100;
+    let price = orderClothes[i].product_id.price;
+    const p = (price * orderClothes[i].product_id.discount) / 100;
     const finalPrice = Number(price) - p;
-    total += finalPrice;
+    let multy = finalPrice * orderClothes[i].qty;
+    total += multy;
   }
 
   function totalPrice(price, discount) {
@@ -153,7 +151,7 @@ export default function OrderList() {
 
                   <div>
                     <span className="text-decoration-line-through text-muted me-1">
-                      ₹{ele.product_id.price}
+                      ₹{(ele.product_id.price, ele.qty)}
                     </span>
                     <span className="fw-semibold text-success fs-5">
                       ₹
@@ -172,7 +170,7 @@ export default function OrderList() {
                 <div className="card-footer bg-white border-0 mt-2">
                   <div className="d-flex gap-2">
                     <button
-                      onClick={() => trash(ele.product_id._id)}
+                      onClick={() => trash(ele._id)}
                       className="btn btn-danger btn-sm"
                     >
                       Remove{" "}
@@ -180,7 +178,6 @@ export default function OrderList() {
                     <a href="/" className="btn btn-primary btn-sm">
                       Back{" "}
                     </a>
-
                   </div>
                 </div>
               </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Api from "../Api/Api";
+import { NavLink } from "react-router-dom";
 
 export default function ProductContainer(props) {
   console.log("PROP", props);
@@ -22,21 +23,6 @@ export default function ProductContainer(props) {
   }
 
   let title = props.name;
-  async function add(ele) {
-    const formData = new FormData();
-
-    formData.append("name", ele.name);
-    formData.append("category", ele.category);
-    formData.append("color", ele.color);
-    formData.append("size", ele.size);
-    formData.append("price", ele.price);
-    formData.append("discount", ele.discount);
-    formData.append("gender", ele.gender);
-
-    formData.append("cloth_image", ele.cloth_image[0]);
-
-    await Api.post("/api/orderclothes", formData);
-  }
 
   const filterData = clothes
     .filter((ele) => ele.category.toLowerCase() === category.toLowerCase())
@@ -73,8 +59,6 @@ export default function ProductContainer(props) {
 
       return true;
     });
-
-  console.log(gender);
 
   useEffect(() => {
     getClothes();
@@ -149,17 +133,17 @@ export default function ProductContainer(props) {
             </div>
           </div>
 
-          {/* <div className="mb-4">
+          <div className="mb-4">
             <h6 className="fw-semibold mb-2">Price:</h6>
 
             <div className="form-check">
               <input
                 className="form-check-input"
-                type="checkbox"
+                type="radio"
                 id="1500"
                 name="price"
                 checked={price2 === 1500}
-                onChange={() => setprice2(price2 === 1500 ? 0 : 1500)}
+                onChange={() => setprice2(1500)}
               />
               <label className="form-check-label" htmlFor="1500">
                 Below ₹1500
@@ -169,11 +153,11 @@ export default function ProductContainer(props) {
             <div className="form-check">
               <input
                 className="form-check-input"
-                type="checkbox"
+                type="radio"
                 id="3000"
                 name="price"
                 checked={price2 === 3000}
-                onChange={() => setprice2(price2 === 3000 ? 0 : 3000)}
+                onChange={() => setprice2(3000)}
               />
               <label className="form-check-label" htmlFor="3000">
                 ₹1500 - ₹3000
@@ -183,64 +167,17 @@ export default function ProductContainer(props) {
             <div className="form-check">
               <input
                 className="form-check-input"
-                type="checkbox"
+                type="radio"
                 id="above3000"
                 name="price"
                 checked={price2 === 3001}
-                onChange={() => setprice2(price2 === 3001 ? 0 : 3001)}
+                onChange={() => setprice2(3001)}
               />
               <label className="form-check-label" htmlFor="above3000">
                 Above ₹3000
               </label>
             </div>
-          </div> */}
-
-          <div className="mb-4">
-  <h6 className="fw-semibold mb-2">Price:</h6>
-
-  <div className="form-check">
-    <input
-      className="form-check-input"
-      type="radio"
-      id="1500"
-      name="price"
-      checked={price2 === 1500}
-      onChange={() => setprice2(1500)}
-    />
-    <label className="form-check-label" htmlFor="1500">
-      Below ₹1500
-    </label>
-  </div>
-
-  <div className="form-check">
-    <input
-      className="form-check-input"
-      type="radio"
-      id="3000"
-      name="price"
-      checked={price2 === 3000}
-      onChange={() => setprice2(3000)}
-    />
-    <label className="form-check-label" htmlFor="3000">
-      ₹1500 - ₹3000
-    </label>
-  </div>
-
-  <div className="form-check">
-    <input
-      className="form-check-input"
-      type="radio"
-      id="above3000"
-      name="price"
-      checked={price2 === 3001}
-      onChange={() => setprice2(3001)}
-    />
-    <label className="form-check-label" htmlFor="above3000">
-      Above ₹3000
-    </label>
-  </div>
-</div>
-
+          </div>
 
           <div className="mb-4">
             <h6 className="fw-semibold mb-2">Gender : </h6>
@@ -386,23 +323,12 @@ export default function ProductContainer(props) {
 
                   <div className="card-footer bg-white border-0 px-0 mt-3">
                     <div className="d-flex flex-wrap gap-2 justify-content-center">
-                      <button
-                        onClick={() =>
-                          add({
-                            name: ele.name,
-                            category: ele.category,
-                            color: ele.color,
-                            size: ele.size,
-                            price: ele.price,
-                            discount: ele.discount,
-                            gender: ele.gender,
-                            cloth_image: ele.cloth_image,
-                          })
-                        }
+                      <NavLink
+                        to={`/addtocart/${ele._id}`}
                         className="btn btn-success btn-sm"
                       >
                         Add to Cart
-                      </button>
+                      </NavLink>
 
                       <button className="btn btn-primary btn-sm">
                         View Details

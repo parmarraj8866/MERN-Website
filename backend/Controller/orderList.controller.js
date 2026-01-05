@@ -8,7 +8,11 @@ exports.CreateorderList = async (req, res) => {
     })
 
     if (findProduct) {
-        findProduct.qty += 1
+        if (qty) {
+            findProduct.qty += qty
+        } else {
+            findProduct.qty += 1
+        }
         await findProduct.save()  // not undarstand save query
         res.send({
             suceess: true,
