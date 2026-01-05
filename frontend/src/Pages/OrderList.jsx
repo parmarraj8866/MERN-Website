@@ -6,11 +6,14 @@ export default function OrderList() {
   const [search, setSearch] = useState("");
   const [sorts, setSort] = useState("");
 
-  // console.log(orderClothes);
+  console.log(orderClothes);
   async function getorderClothes() {
     const res = await Api.get("/api/orderclothes");
+    console.log("res.data.orderList.product_id", res?.data?.orderList);
     setorderClothes(res.data.orderList);
   }
+
+  
 
   const URL = import.meta.env.VITE_IMAGE_URL;
 
@@ -35,22 +38,24 @@ export default function OrderList() {
 
   const filterData = orderClothes
     .filter((ele) => {
-      return ele.name.toLowerCase().includes(search.toLowerCase());
+      return ele?.product_id?.name
+        ?.toLowerCase()
+        .includes(search.toLowerCase());
     })
     .sort((a, b) => {
       if (sorts == "asc") {
-        return a.name.localeCompare(b.name);
+        return a?.product_id?.name.localeCompare(b?.product_id?.name);
       }
       if (sorts == "desc") {
-        return b.name.localeCompare(a.name);
+        return b?.product_id?.name.localeCompare(a?.product_id?.name);
       }
     })
     .sort((a, b) => {
       if (sorts == "price-asc") {
-        return a.price - b.price;
+        return a?.product_id?.price - b.price;
       }
       if (sorts == "price-desc") {
-        return b.price - a.price;
+        return b?.product_id?.price - a?.product_id?.price;
       }
     });
 
@@ -125,36 +130,49 @@ export default function OrderList() {
                       height: "350px",
                       objectFit: "contain",
                     }}
-                    src={`${URL}/${ele.cloth_image[0]}`}
+                    src={`${URL}/${ele.product_id.cloth_image[0]}`}
                     alt=""
                   />
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title text-capitalize">{ele.name}</h5>
+                  <h5 className="card-title text-capitalize">
+                    {ele.product_id.name}
+                  </h5>
 
-                  <p className="my-1 text-muted">Category: {ele.category}</p>
+                  <p className="my-1 text-muted">
+                    Category: {ele.product_id.category}
+                  </p>
 
-                  <p className="mb-1">Color: {ele.color}</p>
+                  <p className="mb-1">Color: {ele.product_id.color}</p>
+                  <p className="mb-1">Color: {ele.product_id.qty}</p>
 
-                  <p className="mb-1">Size: {ele.size?.toUpperCase()}</p>
+                  <p className="mb-1">
+                    Size: {ele.product_id.size?.toUpperCase()}
+                  </p>
+                  <p className="mb-1">Qty : {ele.qty}</p>
 
                   <div>
                     <span className="text-decoration-line-through text-muted me-1">
-                      ₹{ele.price}
+                      ₹{ele.product_id.price}
                     </span>
                     <span className="fw-semibold text-success fs-5">
-                      ₹{totalPrice(ele.price, ele.discount)}
+                      ₹
+                      {totalPrice(
+                        ele.product_id.price,
+                        ele.product_id.discount
+                      )}
                     </span>
                   </div>
 
-                  <small className="text-danger">{ele.discount}% OFF</small>
+                  <small className="text-danger">
+                    {ele.product_id.discount}% OFF
+                  </small>
                 </div>
 
                 <div className="card-footer bg-white border-0 mt-2">
                   <div className="d-flex gap-2">
-                    {/* <button className="btn btn-warning btn-sm">Edit </button> */}
                     <button
-                      onClick={() => trash(ele._id)}
+                      onClick={() => trash(ele.product_id._id)}
                       className="btn btn-danger btn-sm"
                     >
                       Remove{" "}
@@ -163,12 +181,6 @@ export default function OrderList() {
                       Back{" "}
                     </a>
 
-                    {/* <button className="btn btn-dark btn-sm">View Details</button>
-                  <button className="btn btn-success btn-sm">
-                    Add to Cart
-                  </button>
-                         <button className="btn btn-warning btn-sm">Edit Order</button>
-                  <button className="btn btn-danger btn-sm">Remove Order</button> */}
                   </div>
                 </div>
               </div>

@@ -10,6 +10,8 @@ export default function WardrobeEssentials() {
     setClothes(res.data.clothes);
   }
 
+  console.log(clothes);
+
   // const [count, setCount] = useState(0);
   // function countFNX(val) {
   //   if (val == "plus") {
@@ -19,21 +21,9 @@ export default function WardrobeEssentials() {
   //   }
   // }
 
-  async function add(ele) {
-    // console.log(ele)
-    const formData = new FormData();
-
-    formData.append("name", ele.name);
-    formData.append("category", ele.category);
-    formData.append("color", ele.color);
-    formData.append("size", ele.size);
-    formData.append("price", ele.price);
-    formData.append("discount", ele.discount);
-    formData.append("gender", ele.gender);
-
-    formData.append("cloth_image", ele.cloth_image[0]);
-
-    await Api.post("/api/orderclothes", formData);
+  async function add(product_id) {
+    console.log(product_id);
+    await Api.post("/api/orderclothes", { product_id });
   }
 
   function totalPrice(price, discount) {
@@ -124,18 +114,7 @@ export default function WardrobeEssentials() {
                     <div className="card-footer bg-white border-0 mt-2">
                       <div className="d-grid gap-2">
                         <button
-                          onClick={() =>
-                            add({
-                              name: ele.name,
-                              category: ele.category,
-                              color: ele.color,
-                              size: ele.size,
-                              price: ele.price,
-                              discount: ele.discount,
-                              gender: ele.gender,
-                              cloth_image: ele.cloth_image,
-                            })
-                          }
+                          onClick={() => add(ele._id)}
                           className="btn btn-success btn-sm"
                         >
                           Add to Cart

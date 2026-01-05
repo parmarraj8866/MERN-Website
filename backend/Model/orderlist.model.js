@@ -1,17 +1,13 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 
 const orderList = new Schema({
-    name: String,
-    category: String,
-    color: String,
-    size: String,
-    image: String,
-    price: Number,
-    discount: Number,
-    gender: String,
-    cloth_image: {
-        type: [String]
-    }
+    product_id: {
+        type: Schema.Types.ObjectId,
+        ref: "clothWeb"
+    },
+    qty: Number
+
+
 })
 
 module.exports = model("orderList", orderList)

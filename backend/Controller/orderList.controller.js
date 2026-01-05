@@ -1,18 +1,37 @@
 const OrderList = require("../Model/orderlist.model")
 
 exports.CreateorderList = async (req, res) => {
-    const { name, category, color, size, price, discount, gender, cloth_image } = req.body
-    // const cloth_image = req?.file?.filename 
-    const orderList = await OrderList.create({ name, category, color, size, price, discount, gender, cloth_image })
-    res.send({
-        suceess: true,
-        orderList
+    const { product_id, qty } = req.body
+
+    const findProduct = await OrderList.findOne({
+        product_id
     })
+
+    if (findProduct) {
+        findProduct.qty += 1
+        await findProduct.save()  // not undarstand save query
+        res.send({
+            suceess: true,
+            findProduct
+        })
+    } else {
+        const orderList = await OrderList.create({
+            product_id,
+            qty
+        })
+
+        res.send({
+            suceess: true,
+            orderList
+        })
+    }
+
+
 }
 
 
 exports.GetOrderList = async (req, res) => {
-    const orderList = await OrderList.find()
+    const orderList = await OrderList.find().populate("product_id")
     res.send({
         suceess: true,
         orderList
@@ -20,11 +39,11 @@ exports.GetOrderList = async (req, res) => {
 }
 
 
-exports.RemoveOrder = async(req, res) => {
-    const {id} = req.params
+exports.RemoveOrder = async (req, res) => {
+    const { id } = req.params
     const orderList = await OrderList.findByIdAndDelete(id)
     res.json({
-        success : true,
-        message : "Order Deleted!"
+        success: true,
+        message: "Order Deleted!"
     })
 }
