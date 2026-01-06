@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors(
     {
-        origin: ["http://localhost:5173"],
+        origin: ["http://localhost:5173", "https://mern-stack-clothes-website-1.onrender.com"],
         credentials: true
     }
 ))
@@ -21,8 +21,10 @@ app.use(cookieSession({
     keys: [process.env.SESSION_KEY],
     httpOnly: true,
     secure: false,
-    maxAge: 24 * 60 * 60 * 1000 
+    maxAge: 24 * 60 * 60 * 1000
 }))
+
+
 
 // routes 
 const clothrouter = require("./Routes/cloth.route")
@@ -30,7 +32,7 @@ const orderList = require("./Routes/orderlist.route")
 const contactClient = require("./Routes/contact.route")
 const userAuth = require("./Routes/user.route")
 
-// APis
+// Apis
 app.use("/api/clothes", clothrouter)
 app.use("/api/orderclothes", orderList)
 app.use("/api/contactclient", contactClient)

@@ -151,7 +151,7 @@ export default function OrderList() {
 
                   <div>
                     <span className="text-decoration-line-through text-muted me-1">
-                      ₹{(ele.product_id.price, ele.qty)}
+                      ₹{ele.product_id.price}
                     </span>
                     <span className="fw-semibold text-success fs-5">
                       ₹
