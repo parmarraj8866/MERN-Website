@@ -12,7 +12,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors(
     {
-        origin: ["http://localhost:5173", "https://mern-stack-clothes-website-1.onrender.com"],
+        // origin: ["http://localhost:5173", "https://mern-stack-clothes-website-1.onrender.com"],
+        origin: ["https://mern-stack-clothes-website-1.onrender.com"],
         credentials: true
     }
 ))
