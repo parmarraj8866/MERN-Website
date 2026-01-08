@@ -12,13 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors(
     {
-<<<<<<< HEAD
-        // origin: ["http://localhost:5173", "https://mern-stack-clothes-website-1.onrender.com"],
-        origin: ["https://mern-stack-clothes-website-raj.onrender.com", "https://raj-webclothes-8866.netlify.app"],
-=======
-        origin: ["http://localhost:5173", "https://mern-stack-clothes-website-1.onrender.com"],
-        // origin: ["https://mern-stack-clothes-website-raj.onrender.com"],
->>>>>>> d73fdd9 (media query)
+ origin: ["http://localhost:5173", "https://raj-webclothes-8866.netlify.app"],
         credentials: true
     }
 ))
