@@ -13,6 +13,12 @@
   }
 }
 
+/* Navbar  */
+
+.nav {
+  padding: 1rem 3rem;
+}
+
 /* Login Page  */
 
 .login-wrapper {
@@ -195,10 +201,16 @@
   content: "";
   width: 60%;
   height: 3px;
-  background: #198754;   
+  background: #198754;
   position: absolute;
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
   border-radius: 10px;
+}
+
+@media (max-width: 370px) {
+  .nav {
+    padding: 0.4rem 0.5rem;
+  }
 }

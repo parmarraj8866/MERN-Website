@@ -3,6 +3,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import { FiLogOut, FiShoppingCart } from "react-icons/fi";
 import Api from "../Api/Api";
 import { useNavigate } from "react-router-dom";
+import fasionAddaimg from "../assets/images/FasionAdda Logo.png";
 
 export default function Navbar() {
   const [id, setId] = useState(false);
@@ -41,12 +42,18 @@ export default function Navbar() {
 
   return (
     <nav
-      className="navbar navbar-expand-lg  px-5 py-3 fadeInEffect sticky-top "
+      className="navbar nav navbar-expand-lg fadeInEffect sticky-top "
       // style={{ backgroundColor: "#f2f2f2ff"}}
       style={{ backgroundColor: "#f5f5f5ff", zIndex: "100" }}
     >
-      <a className="navbar-brand fs-3" href="/">
-        FashionAdda
+      <a className="navbar-brand fs-3 d-flex align-items-center" href="/">
+        <img
+          style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+          src={fasionAddaimg}
+          alt=""
+          className="me-2"
+        />
+        <span>FashionAdda</span>
       </a>
       <button
         className="navbar-toggler"

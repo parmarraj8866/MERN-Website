@@ -97,7 +97,7 @@ export default function Footer() {
 
         <hr />
         <p className="text-center copyright">
-          © 2026 YourShop. All Rights Reserved.
+          © 2026 fashionadda. All Rights Reserved.
         </p>
       </div>
     </footer>

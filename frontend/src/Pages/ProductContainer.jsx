@@ -70,13 +70,13 @@ export default function ProductContainer(props) {
       style={{ position: "relative" }}
     >
       <div
-        className="position-fixed top-0 start-0 vh-100 border-end bg-light pt-5"
-        style={{ width: "280px" }}
+        className="position-fixed productContainer2 top-0 start-0 vh-100 border-end bg-light"
+        
       >
-        <div className="p-4 mt-5">
+        <div className=" productContainer2-details">
           <h4 className="fw-normal text-capitalize mb-4">{title} : </h4>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <h6 className="fw-semibold mb-2">Category : </h6>
 
             <div className="form-check">
@@ -133,7 +133,7 @@ export default function ProductContainer(props) {
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <h6 className="fw-semibold mb-2">Price:</h6>
 
             <div className="form-check">
@@ -268,7 +268,7 @@ export default function ProductContainer(props) {
         </div>
       </div>
 
-      <div style={{ marginLeft: "300px" }} className=" w-100 ">
+      <div  className=" w-100 productContainer-right">
         <div className="py-3">
           <input
             type="text"

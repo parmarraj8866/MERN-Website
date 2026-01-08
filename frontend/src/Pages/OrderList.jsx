@@ -64,18 +64,35 @@ export default function OrderList() {
   return (
     <div>
       <div
-        className="d-flex justify-content-between mt-5 fw-normal mx-5 py-1 "
-        style={{ borderBottom: "2px solid #131313ff" }}
+        className="container-fluid mt-5 py-2 "
+        style={{ borderBottom: "1px solid #131313ff" }}
       >
-        <h2>OrderList</h2>
-        <h2>
-          Total Order's :{" "}
-          <span className="text-danger fw-bold">{orderClothes.length}</span>
-        </h2>
-        <h2>
-          Total Amount :{" "}
-          <span className="text-success fw-bold">₹{total.toFixed(2)}</span>
-        </h2>
+        <div className="row  align-items-center text-center text-sm-start text-md-center">
+          {/* Order List */}
+          <div className="col-12 col-md-4 mb-2 mb-md-0">
+            <h4 className="fw-normal">Order List</h4>
+          </div>
+
+          {/* Total Orders */}
+          <div className="col-12 col-md-4 mb-2 mb-md-0">
+            <h5 className="fw-normal">
+              Total Orders :
+              <span className="text-danger fw-bold ms-2">
+                {orderClothes.length}
+              </span>
+            </h5>
+          </div>
+
+          {/* Total Amount */}
+          <div className="col-12 col-md-4">
+            <h5 className="fw-normal">
+              Total Amount :
+              <span className="text-success fw-bold ms-2">
+                ₹{total.toFixed(2)}
+              </span>
+            </h5>
+          </div>
+        </div>
       </div>
 
       <div className="container my-4">

@@ -89,3 +89,32 @@
 .shopbycontainer .button:hover {
   background-color: #c7beb5;
 }
+
+@media (max-width: 980px) {
+  .box,
+  .box2,
+  .box3,
+  .box4 {
+    width: 350px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+}
+@media (max-width: 370px) {
+  .box,
+  .box2,
+  .box3,
+  .box4 {
+    width: 250px;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+}

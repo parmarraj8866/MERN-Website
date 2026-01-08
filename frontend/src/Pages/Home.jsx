@@ -14,7 +14,7 @@ export default function TeamCarousel() {
   const handleDotClick = (index) => setCurrentIndex(index);
 
   return (
-    <div className="main-container mx-5 shadow-sm " >
+    <div className="main-container  " >
       {/* Carousel Section */}
       <div className="controls-section">
         <div className="member-info">
