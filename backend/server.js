@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors(
     {
- origin: ["http://localhost:5173", "https://raj-webclothes-8866.netlify.app"],
+ origin: ["https://raj-webclothes-8866.netlify.app"],
         credentials: true
     }
 ))
