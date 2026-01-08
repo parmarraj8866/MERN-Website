@@ -19,8 +19,9 @@ app.use(cors(
 app.use(cookieSession({
     name: "session",
     keys: [process.env.SESSION_KEY],
-    httpOnly: true,
-    secure: false,
+     httpOnly: true,
+  secure: true,          
+  sameSite: "none",    
     maxAge: 24 * 60 * 60 * 1000
 }))
 
