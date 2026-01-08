@@ -56,13 +56,11 @@ exports.login = async (req, res) => {
             message: "Password Not Match!"
         })
     }
-    const userData = {
+
+    req.session.user = {
         useremail: matchUser.email,
         userid: matchUser._id
     }
-
-    req.session.user = userData
-
     res.json({
         success: true,
         message: "User Login Successfully!"
