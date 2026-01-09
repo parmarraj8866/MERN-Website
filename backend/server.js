@@ -12,20 +12,16 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors(
     {
-<<<<<<< HEAD
- origin: ["https://raj-webclothes-8866.netlify.app"],
-=======
         origin: ["http://localhost:5173", "https://raj-webclothes-8866.netlify.app"],
->>>>>>> c251269 (Front-End & Back-End Update)
         credentials: true
     }
 ))
 app.use(cookieSession({
     name: "session",
     keys: [process.env.SESSION_KEY],
-     httpOnly: true,
-  secure: true,          
-  sameSite: "none",    
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
     maxAge: 24 * 60 * 60 * 1000
 }))
 
