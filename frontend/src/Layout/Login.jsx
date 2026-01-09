@@ -24,7 +24,7 @@ export default function Login() {
 return (
   <div className="login-wrapper">
     <div className="login-card shadow-sm border rounded p-5">
-      <form method="post" onSubmit={handleSubmit(login)}>
+      <form onSubmit={handleSubmit(login)}>
         <h3 className="fw-bold text-center mb-4">Welcome Back!</h3>
         <p className="text-center text-muted mb-4">Login to access your wardrobe</p>
 
