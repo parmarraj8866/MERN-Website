@@ -1,0 +1,15 @@
+# 1️⃣ Add all changes
+git add .
+
+# 2️⃣ Commit with a message
+git commit -m "Your commit message"
+
+# 3️⃣ Pull latest changes from remote and rebase
+git pull --rebase origin main
+
+# 4️⃣ Agar koi conflict aaye, manually fix karo, fir:
+git add .
+git rebase --continue
+
+# 5️⃣ Push your changes to remote
+git push origin main

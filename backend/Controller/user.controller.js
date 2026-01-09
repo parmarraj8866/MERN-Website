@@ -57,10 +57,18 @@ exports.login = async (req, res) => {
         })
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c251269 (Front-End & Back-End Update)
     req.session.user = {
         useremail: matchUser.email,
         userid: matchUser._id
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> c251269 (Front-End & Back-End Update)
     res.json({
         success: true,
         message: "User Login Successfully!"

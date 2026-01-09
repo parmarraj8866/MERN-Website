@@ -12,7 +12,11 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors(
     {
+<<<<<<< HEAD
  origin: ["https://raj-webclothes-8866.netlify.app"],
+=======
+        origin: ["http://localhost:5173", "https://raj-webclothes-8866.netlify.app"],
+>>>>>>> c251269 (Front-End & Back-End Update)
         credentials: true
     }
 ))
@@ -31,7 +35,7 @@ app.use(cookieSession({
 const clothrouter = require("./Routes/cloth.route")
 const orderList = require("./Routes/orderlist.route")
 const contactClient = require("./Routes/contact.route")
-const userAuth = require("./Routes/user.route") 
+const userAuth = require("./Routes/user.route")
 
 // Apis
 app.use("/api/clothes", clothrouter)
