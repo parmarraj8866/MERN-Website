@@ -25,7 +25,7 @@ export default function Signup() {
 return (
   <div className="signup-wrapper">
     <div className="signup-card shadow-sm border rounded p-5">
-      <form method="post" onSubmit={handleSubmit(signup)}>
+      <form onSubmit={handleSubmit(signup)}>
 
         <h3 className="fw-bold text-center mb-2">Create Your Account</h3>
         <p className="text-center text-muted mb-4">Join our wardrobe community</p>
