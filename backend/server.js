@@ -16,9 +16,10 @@ app.use(cors(
         credentials: true
     }
 ))
+const key = process.env.SESSION_KEY
 app.use(cookieSession({
     name: "session",
-    keys: [process.env.SESSION_KEY],
+    keys: [key],
     httpOnly: true,
     secure: true,
     sameSite: "none",
