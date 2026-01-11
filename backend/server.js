@@ -10,20 +10,25 @@ const cookieSession = require("cookie-session")
 app.use("/uploads", express.static("uploads"))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-app.use(cors(
-    {
-        origin: ["http://localhost:5173", "https://raj-webclothes-8866.netlify.app"],
-        credentials: true
-    }
-))
+app.set("trust proxy", 1);
+
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://raj-webclothes-8866.netlify.app"
+  ],
+  credentials: true
+}));
+
 app.use(cookieSession({
-    name: "session",
-    keys: ["mykey"],
-    httpOnly: true,
-    secure: true,
-    sameSite: "none",
-    maxAge: 24 * 60 * 60 * 1000
-}))
+  name: "session",
+  keys: ["mykey"],
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  maxAge: 24 * 60 * 60 * 1000
+}));
+
 
 
 
