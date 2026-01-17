@@ -16,7 +16,7 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "https://raj-webclothes-8866.netlify.app",
-    "https://696b269b77da3fa2c14eca70--raj-webclothes-8866.netlify.app",
+    "https://696b326de3a408000857244b--raj-webclothes-8866.netlify.app",
     "https://mern-stack-clothes-website-raj.onrender.com"
   ],
   credentials: true
