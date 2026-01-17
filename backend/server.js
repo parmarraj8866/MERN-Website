@@ -16,6 +16,7 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "https://raj-webclothes-8866.netlify.app",
+    "https://696b269b77da3fa2c14eca70--raj-webclothes-8866.netlify.app",
     "https://mern-stack-clothes-website-raj.onrender.com"
   ],
   credentials: true
@@ -31,7 +32,8 @@ app.use(session({
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     maxAge: 24 * 60 * 60 * 1000,
-    domain: process.env.NODE_ENV === "production" ? ".netlify.app" : "localhost"
+    // Don't set domain for cross-origin requests
+    domain: process.env.NODE_ENV === "production" ? undefined : "localhost"
   }
 }));
 
