@@ -15,7 +15,8 @@ app.set("trust proxy", 1);
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://raj-webclothes-8866.netlify.app"
+    "https://raj-webclothes-8866.netlify.app",
+    "https://mern-stack-clothes-website-raj.onrender.com"
   ],
   credentials: true
 }));
