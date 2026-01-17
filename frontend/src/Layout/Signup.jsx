@@ -30,7 +30,6 @@ return (
         <h3 className="fw-bold text-center mb-2">Create Your Account</h3>
         <p className="text-center text-muted mb-4">Join our wardrobe community</p>
 
-        {/* Username */}
         <div className="form-floating mb-3">
           <input
             type="text"

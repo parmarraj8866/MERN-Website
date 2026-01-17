@@ -2,6 +2,10 @@
   animation: fadeIn 0.8s ease-in-out;
 }
 
+.addcloth {
+  width: 40%;
+  padding: 30px;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -209,8 +213,37 @@
   border-radius: 10px;
 }
 
+
+@media (max-width: 1200px) {
+  .nav {
+    padding: 0.4rem 0.5rem;
+  }
+  .addcloth {
+    width: 90%;
+    padding: 20px;
+  }
+  .addcloth h3 {
+    font-size: 25px;
+  }
+  .addcloth label {
+    font-size: 14px;
+  }
+
+}
+
 @media (max-width: 370px) {
   .nav {
     padding: 0.4rem 0.5rem;
   }
+  .addcloth {
+    width: 90%;
+    padding: 20px;
+  }
+  .addcloth h3 {
+    font-size: 17px;
+  }
+  .addcloth label {
+    font-size: 14px;
+  }
+
 }

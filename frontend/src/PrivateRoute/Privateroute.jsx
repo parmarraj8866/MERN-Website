@@ -38,5 +38,5 @@ export default function PrivateRoute() {
       </div>
     );
   }
-  return user ? <Outlet /> : <Navigate to="/login" />;
+  return !user ? <Outlet /> : <Navigate to="/login" />;
 }

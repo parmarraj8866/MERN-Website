@@ -69,10 +69,7 @@ export default function ProductContainer(props) {
       className="productContainer mx-1 my-2 p-2 px-4"
       style={{ position: "relative" }}
     >
-      <div
-        className="position-fixed productContainer2 top-0 start-0 vh-100 border-end bg-light"
-        
-      >
+      <div className="position-fixed productContainer2 top-0 start-0 vh-100 border-end bg-light">
         <div className=" productContainer2-details">
           <h4 className="fw-normal text-capitalize mb-4">{title} : </h4>
 
@@ -268,7 +265,7 @@ export default function ProductContainer(props) {
         </div>
       </div>
 
-      <div  className=" w-100 productContainer-right">
+      <div className=" w-100 productContainer-right">
         <div className="py-3">
           <input
             type="text"
@@ -279,69 +276,75 @@ export default function ProductContainer(props) {
         </div>
         <div>
           <div className="d-flex flex-wrap gap-3 fadeInEffect">
-            {filterData?.map((ele, index) => (
-              <div key={index}>
-                <div className="shadow-sm border p-3 fadeInEffect text-center">
-                  <img
-                    className="mb-3 border rounded"
-                    style={{
-                      width: "100%",
-                      maxWidth: "250px",
-                      height: "250px",
-                      objectFit: "contain",
-                    }}
-                    src={`${URL}/${ele.cloth_image[0]}`}
-                    alt={ele.name}
-                  />
+            {(!filterData.length < 0) ? (
+              filterData?.map((ele, index) => (
+                <div key={index}>
+                  <div className="shadow-sm border p-3 fadeInEffect text-center">
+                    <img
+                      className="mb-3 border rounded"
+                      style={{
+                        width: "100%",
+                        maxWidth: "250px",
+                        height: "250px",
+                        objectFit: "contain",
+                      }}
+                      src={`${URL}/${ele.cloth_image[0]}`}
+                      alt={ele.name}
+                    />
 
-                  <div className="card-body p-0 text-start">
-                    <h6 className="card-title text-capitalize mb-1">
-                      {ele.name}
-                    </h6>
+                    <div className="card-body p-0 text-start">
+                      <h6 className="card-title text-capitalize mb-1">
+                        {ele.name}
+                      </h6>
 
-                    <small className="text-muted d-block">
-                      Category: {ele.category}
-                    </small>
+                      <small className="text-muted d-block">
+                        Category: {ele.category}
+                      </small>
 
-                    <small className="d-block">Color: {ele.color}</small>
-                    <small className="d-block">Gender: {ele.gender}</small>
-                    <small className="d-block">
-                      Size: {ele.size?.toUpperCase()}
-                    </small>
+                      <small className="d-block">Color: {ele.color}</small>
+                      <small className="d-block">Gender: {ele.gender}</small>
+                      <small className="d-block">
+                        Size: {ele.size?.toUpperCase()}
+                      </small>
 
-                    <div className="mt-2">
-                      <span className="text-decoration-line-through text-muted me-2">
-                        ₹{ele.price}
-                      </span>
-                      <span className="fw-semibold text-success fs-6">
-                        ₹{totalPrice(ele.price, ele.discount)}
-                      </span>
+                      <div className="mt-2">
+                        <span className="text-decoration-line-through text-muted me-2">
+                          ₹{ele.price}
+                        </span>
+                        <span className="fw-semibold text-success fs-6">
+                          ₹{totalPrice(ele.price, ele.discount)}
+                        </span>
+                      </div>
+
+                      <small className="text-danger">{ele.discount}% OFF</small>
                     </div>
 
-                    <small className="text-danger">{ele.discount}% OFF</small>
-                  </div>
+                    <div className="card-footer bg-white border-0 px-0 mt-3">
+                      <div className="d-flex flex-wrap gap-2 justify-content-center">
+                        <NavLink
+                          to={`/addtocart/${ele._id}`}
+                          className="btn btn-success btn-sm"
+                        >
+                          Add to Cart
+                        </NavLink>
 
-                  <div className="card-footer bg-white border-0 px-0 mt-3">
-                    <div className="d-flex flex-wrap gap-2 justify-content-center">
-                      <NavLink
-                        to={`/addtocart/${ele._id}`}
-                        className="btn btn-success btn-sm"
-                      >
-                        Add to Cart
-                      </NavLink>
+                        <button className="btn btn-primary btn-sm">
+                          View Details
+                        </button>
 
-                      <button className="btn btn-primary btn-sm">
-                        View Details
-                      </button>
-
-                      <a href="/" className="btn btn-dark btn-sm">
-                        Back
-                      </a>
+                        <a href="/" className="btn btn-dark btn-sm">
+                          Back
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <h2 className="w-100 text-center text-danger fw-bold my-5 border p-3 rounded shadow-sm">
+                Product Not Available
+              </h2>
+            )}
           </div>
         </div>
       </div>

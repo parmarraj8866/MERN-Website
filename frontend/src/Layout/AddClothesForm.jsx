@@ -28,7 +28,7 @@ export default function AddClothesForm() {
 
   return (
     <div
-      className="container w-50 my-5 shadow-sm p-5"
+      className="container addcloth my-5 shadow-sm"
       style={{ backgroundColor: "#e2f1f1ff" }}
     >
       <form method="post" onSubmit={handleSubmit(add)}>
@@ -128,8 +128,8 @@ export default function AddClothesForm() {
         </div>
 
         <div className="mb-2">
-          <button className="btn btn-info me-2">Create Product</button>
-          <a href="/" className="btn btn-dark">
+          <button className="btn btn-info me-2 mb-2">Create Product</button>
+          <a href="/" className="btn btn-dark mb-2">
             Back Home
           </a>
         </div>
