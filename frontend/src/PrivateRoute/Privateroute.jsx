@@ -13,11 +13,11 @@ export default function PrivateRoute() {
       console.log(res.data);
       if (res.data.success) {
         setUser(res.data.user);
-        setLoading(false);
       } else {
         setUser(null);
       }
     } catch (err) {
+      console.error("Auth check failed:", err);
       setUser(null);
     } finally {
       setLoading(false);
@@ -38,5 +38,5 @@ export default function PrivateRoute() {
       </div>
     );
   }
-  return !user ? <Outlet /> : <Navigate to="/login" />;
+  return user != null ? <Outlet /> : <Navigate to="/login" />;
 }

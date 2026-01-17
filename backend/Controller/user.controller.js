@@ -42,7 +42,7 @@ exports.login = async (req, res) => {
     )
 
     if (!matchUser) {
-        return res.json({
+        return res.status(401).json({
             success: false,
             message: "EmailId Not Exist!"
         })
@@ -51,7 +51,7 @@ exports.login = async (req, res) => {
     const matchPass = await HashToPlain(password, matchUser.password)
 
     if (!matchPass) {
-        return res.json({
+        return res.status(401).json({
             success: false,
             message: "Password Not Match!"
         })
@@ -62,9 +62,18 @@ exports.login = async (req, res) => {
         userid: matchUser._id
     }
 
-    res.json({
-        success: true,
-        message: "User Login Successfully!"
+    // Ensure session is saved before responding
+    req.session.save((err) => {
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: "Session save failed"
+            })
+        }
+        res.status(200).json({
+            success: true,
+            message: "User Login Successfully!"
+        })
     })
 }
 
@@ -72,14 +81,14 @@ exports.login = async (req, res) => {
 exports.checkAuth = async (req, res) => {
     const token = req.session.user
     if (!token) {
-        return res.json({
+        return res.status(401).json({
             success: false,
             message: "Please Login",
             user: null
         })
     }
 
-    res.json({
+    res.status(200).json({
         success: true,
         message: "Login!",
         user: token

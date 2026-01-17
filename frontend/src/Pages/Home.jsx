@@ -15,7 +15,6 @@ export default function TeamCarousel() {
 
   return (
     <div className="main-container  " >
-      {/* Carousel Section */}
       <div className="controls-section">
         <div className="member-info">
           <h2 className="member-name">{teamMembers[currentIndex].name}</h2>

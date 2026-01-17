@@ -31,10 +31,14 @@ import Footer from "./Pages/Footer";
 import BestSeller from "./Pages/BestSeller";
 import AddToCart from "./Layout/AddToCart";
 
+// Context
+import CartProvider from "./Context/CartContext";
+
 export default function App() {
   return (
     <>
-      <BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
         <Routes>
           <Route
             element={
@@ -137,7 +141,9 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
-      </BrowserRouter>
+        </BrowserRouter>
+      </CartProvider>
     </>
   );
 }
+    

@@ -5,7 +5,7 @@ const dorenv = require("dotenv").config()
 const db = require("./Config/db")()
 const port = process.env.Port || 5000
 const cors = require("cors")
-const cookieSession = require("cookie-session")
+const session = require("express-session")
 
 app.use("/uploads", express.static("uploads"))
 app.use(express.urlencoded({ extended: true }))
@@ -20,16 +20,19 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(cookieSession({
+app.use(session({
   name: "session",
-  keys: ["mykey"],
-  httpOnly: true,
-  secure: true,
-  sameSite: "none",
-  maxAge: 24 * 60 * 60 * 1000
+  secret: "mykey",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    maxAge: 24 * 60 * 60 * 1000,
+    domain: process.env.NODE_ENV === "production" ? ".netlify.app" : "localhost"
+  }
 }));
-
-
 
 
 // routes 

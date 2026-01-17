@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { FaCircleUser } from "react-icons/fa6";
 import { FiLogOut, FiShoppingCart } from "react-icons/fi";
 import Api from "../Api/Api";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../Context/CartContext";
 import fasionAddaimg from "../assets/images/FasionAdda Logo.png";
 
 export default function Navbar() {
   const [id, setId] = useState(false);
-  const [orderClothes, setorderClothes] = useState([]);
-  let count = orderClothes?.length; // without ? <--- not work login form
+  const { orderClothes } = useContext(CartContext);
+  let count = orderClothes?.length;
   let redirect = useNavigate();
-
-  async function getorderClothes() {
-    const res = await Api.get("/api/orderclothes");
-    setorderClothes(res.data.orderList);
-  }
 
   async function logout() {
     const res = await Api.get("/api/user/logout");
@@ -36,7 +32,6 @@ export default function Navbar() {
   }
 
   useEffect(() => {
-    getorderClothes();
     user();
   }, []);
 
@@ -143,7 +138,7 @@ export default function Navbar() {
                 marginBottom: "40px",
               }}
             >
-              <span className="fs-6 text-white fw-bold">{count}</span>
+              <span className="fs-6 text-white fw-bold">{count || 0}</span>
             </p>
           </li>
           <li className="mt-1">

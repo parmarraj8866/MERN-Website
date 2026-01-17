@@ -6,10 +6,12 @@ export default function OrderList() {
   const [search, setSearch] = useState("");
   const [sorts, setSort] = useState("");
 
+  
+
   async function getorderClothes() {
     const res = await Api.get("/api/orderclothes");
     console.log("res.data.orderList.product_id", res?.data?.orderList);
-    setorderClothes(res.data.orderList);
+    setorderClothes(res?.data?.orderList);
   }
 
   const URL = import.meta.env.VITE_IMAGE_URL;

@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 export default function WardrobeEssentials() {
   const [clothes, setClothes] = useState([]);
   const URL = import.meta.env.VITE_IMAGE_URL;
+
   async function getClothes() {
     const res = await Api.get("/api/clothes");
     setClothes(res.data.clothes);
@@ -31,7 +32,7 @@ export default function WardrobeEssentials() {
       </h3>
       <div className="row g-2">
         <>
-          {clothes.length != 0 ? (
+          {clothes?.length != 0 ? (
             clothes?.map((ele, index) =>
               index > 3 ? (
                 ""

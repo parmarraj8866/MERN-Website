@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Api from "../Api/Api";
 import { useNavigate, useParams } from "react-router-dom";
+import { CartContext } from "../Context/CartContext";
 
 export default function AboutProduct() {
   const [singleProduct, setsingleProduct] = useState([]);
+  const { addToCart } = useContext(CartContext);
 
   const { id } = useParams();
   const URL = import.meta.env.VITE_IMAGE_URL;
-  const redirect = useNavigate()
+  const redirect = useNavigate();
 
   // console.log(singleProduct);
 
@@ -27,10 +29,15 @@ export default function AboutProduct() {
   }
 
   async function add(product_id) {
-    let qty = count
+    let qty = count;
     console.log(product_id);
-    await Api.post("/api/orderclothes", { product_id, qty });
-    redirect("/orderlist")
+    try {
+      await addToCart(product_id, qty);
+      redirect("/orderlist");
+    } catch (err) {
+      console.error("Error adding to cart:", err);
+      alert("Failed to add item to cart");
+    }
   }
 
   function totalPrice(price, discount) {
@@ -39,8 +46,7 @@ export default function AboutProduct() {
     return finalPrice;
   }
 
-  // console.log(singleProduct);
-
+  
   useEffect(() => {
     getSingleProduct();
   }, [id]);
