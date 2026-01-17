@@ -141,11 +141,11 @@ export default function Navbar() {
               <span className="fs-6 text-white fw-bold">{count || 0}</span>
             </p>
           </li>
-          <li className="mt-1">
+          {/* <li className="mt-1">
             <a href="/create-product" className="btn btn-info">
               Create-Product
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>
