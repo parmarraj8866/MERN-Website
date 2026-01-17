@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 
 export default function WardrobeEssentials() {
   const [clothes, setClothes] = useState([]);
-  const URL = import.meta.env.VITE_IMAGE_URL;
 
   async function getClothes() {
     const res = await Api.get("/api/clothes");
@@ -12,8 +11,6 @@ export default function WardrobeEssentials() {
   }
 
   console.log(clothes);
-
- 
 
   function totalPrice(price, discount) {
     const p = (price * discount) / 100;
@@ -49,7 +46,7 @@ export default function WardrobeEssentials() {
                       className="mb-2"
                     >
                       <img
-                        src={`${URL}/${ele.cloth_image[0]}`}
+                        src={`${import.meta.env.VITE_IMAGE_URL}/${ele.cloth_image[0]}`}
                         alt={ele.name}
                         style={{
                           width: "100%",
@@ -82,8 +79,6 @@ export default function WardrobeEssentials() {
                       </div>
 
                       <small className="text-danger">{ele.discount}% OFF</small>
-
-                     
                     </div>
 
                     <div className="card-footer bg-white border-0 mt-2">
@@ -105,7 +100,7 @@ export default function WardrobeEssentials() {
                     </div>
                   </div>
                 </div>
-              )
+              ),
             )
           ) : (
             <h2 className="text-center text-danger fw-bold my-5 border p-3 rounded shadow-sm">
